@@ -1,0 +1,213 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    position: fixed;
+    padding-top: 1em;
+    width: 100%;
+    z-index: 10;
+}
+
+header h1 {
+    flex-basis: 30%;
+    text-align: center;
+}
+
+header nav {
+    flex-basis: 50%;
+}
+
+header .menu {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 2em;
+}
+
+header .menu>li {
+    flex-grow: 1;
+    text-align: right;
+    position: relative;
+    cursor: pointer;
+}
+
+header .menu ul {
+    list-style: none;
+}
+
+header .menu li .sous_menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    padding: 0;
+    min-width: auto;
+    z-index: 100;
+}
+
+header .sous_menu li {
+    text-align: left;
+}
+
+header .menu li.has-sous_menu>a:hover+.sous_menu,
+header .menu li.has-sous_menu .sous_menu:hover {
+    display: block;
+}
+
+nav ul.menu>li.has-sous_menu>a::after {
+    display: inline-block;
+    margin-left: 0.3em;
+    font-size: 0.9em;
+}
+
+header .sous_menu li {
+    padding: 0.5em 1em;
+    white-space: nowrap;
+}
+
+header .search {
+    flex-basis: 20%;
+    text-align: center;
+}
+
+header .search2 {
+    padding: 0.65em 1.9em 0.65em 0.65em;
+}
+
+header .submit {
+    padding: 0.65em;
+}
+
+.photo_acc {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo_acc .overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.photo_acc article {
+    text-align: center;
+}
+
+.photo_acc article div {
+    display: inline-block;
+    width: auto;
+    padding: 0 1.7em 0.2em;
+    margin-top: 0.5em;
+}
+
+.photo_acc h1 {
+    position: relative;
+    z-index: 2;
+}
+
+.photo_acc a {
+    position: relative;
+    z-index: 2;
+}
+
+.parent {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 130em;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.explos_recentes h1 {
+    text-align: center;
+    padding-top: 2em;
+}
+
+.explos_recentes_photos {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 7em;
+}
+
+.explos_recentes_photos>article {
+    flex-basis: 25%;
+    flex-grow: 1;
+    margin: 2.7em;
+    padding: 1em;
+    position: relative;
+    overflow: hidden;
+}
+
+.explos_recentes_photos article h2 {
+    margin: 0 0.8em 0 0.8em;
+}
+
+.explos_recentes_photos>article>img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    margin-top: 1.7em;
+}
+
+.trait-blanc {
+    flex-grow: 1;
+    height: 2px;
+}
+
+.explos_recentes_photos>article article {
+    width: 28em;
+    padding-top: 2em;
+}
+
+.explos_recentes_photos>article article div {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 2.2em;
+}
+
+.explos_recentes_photos>article article img {
+    width: 2.4em;
+    height: auto;
+}
+
+.explos_recentes_photos>article a {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.explos_recentes_photos>article a div {
+    padding: 0.2em 1em 0.4em 1em;
+    margin-top: 1em;
+}
