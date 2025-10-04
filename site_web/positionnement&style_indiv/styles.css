@@ -23,6 +23,7 @@ header li a {
 
 nav>ul>li>a:hover {
     color: #3B3B3B;
+    transition: 0.3s;
 }
 
 nav ul.menu>li.has-sous_menu>a::after {
@@ -32,6 +33,7 @@ nav ul.menu>li.has-sous_menu>a::after {
     font-size: 0.9em;
     transition: transform 0.3s;
     color: white;
+    transition: 0.3s;
 }
 
 nav ul.menu>li.has-sous_menu>a:hover::after {
@@ -41,6 +43,7 @@ nav ul.menu>li.has-sous_menu>a:hover::after {
 
 nav .menu li .sous_menu li:hover {
     background-color: #3B3B3B;
+    transition: 0.3s;
 }
 
 header .search2 {
