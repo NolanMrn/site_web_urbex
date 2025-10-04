@@ -147,7 +147,7 @@ main {
 .exploration article {
     display: flex;
     margin: 1.5em 3em 1.5em 2.6em;
-    padding: 1em;
+    padding: 0.9em;
     flex-grow: 1;
 }
 

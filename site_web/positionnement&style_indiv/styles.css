@@ -89,3 +89,14 @@ main {
 .exploration article {
     background-color: white;
 }
+
+main a {
+    color: white;
+    font-style: italic;
+    text-decoration: none;
+}
+
+main a:hover {
+    color: #3B3B3B;
+    transition: 0.3s;
+}
