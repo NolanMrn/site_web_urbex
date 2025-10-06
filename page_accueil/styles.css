@@ -67,7 +67,7 @@ body {
 }
 
 .photo_acc {
-    background: url("../img/accueil/grande_photo_accueil.jpeg") center/cover no-repeat;
+    background: url("/site_web/img/accueil/grande_photo_accueil.jpeg") center/cover no-repeat;
     color: white;
     box-shadow: 0px 0px 30px 2px black;
 }
