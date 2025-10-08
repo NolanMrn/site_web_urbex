@@ -6,6 +6,7 @@ function getMoisFr($numero) {
         7 => 'juillet', 8 => 'août', 9 => 'septembre',
         10 => 'octobre', 11 => 'novembre', 12 => 'décembre'
     ];
+    $numero = (int)$numero;
     return $mois[$numero] ?? '';
 }
 

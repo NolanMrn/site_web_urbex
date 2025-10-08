@@ -23,7 +23,6 @@ create table LIEUX (
 create table DESCRIPTIFLIEUX (
     idL int,
     nom_categorie varchar(30),
-    nb_paraph_lieux int,
     histoire_lieux longtext,
     primary key (idL, nom_categorie),
     foreign key (nom_categorie) references CATEGORIE(nom_categorie),
