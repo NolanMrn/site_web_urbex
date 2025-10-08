@@ -36,6 +36,34 @@ en haut, il est impossible d’avancer davantage en raison du plancher qui s’e
 plusieurs endroits."
 );
 
+insert into GALLERIE (idL, nom_categorie) values (1, 'Châteaux');
+insert into GALLERIE (idL, nom_categorie) values (1, 'Châteaux');
+insert into GALLERIE (idL, nom_categorie) values (1, 'Châteaux');
+
+insert into IMAGEGALLERIE (idG, chemin, ordreImg, cadrage) values
+(1, '/site_web/img/chateaux/bois/image1.jpeg', 1, "horizontal"),
+(1, '/site_web/img/chateaux/bois/image2.jpeg', 2, "horizontal"),
+(1, '/site_web/img/chateaux/bois/image3.jpeg', 3, "horizontal"),
+
+(2, '/site_web/img/chateaux/bois/image4.jpeg', 1, "vertical"),
+(2, '/site_web/img/chateaux/bois/image5.jpeg', 2, "horizontal"),
+(2, '/site_web/img/chateaux/bois/image6.jpeg', 3, "horizontal"),
+(2, '/site_web/img/chateaux/bois/image7.jpeg', 4, "horizontal"),
+(2, '/site_web/img/chateaux/bois/image8.jpeg', 5, "horizontal"),
+(2, '/site_web/img/chateaux/bois/image9.jpeg', 6, "horizontal"),
+
+(3, '/site_web/img/chateaux/bois/image10.jpeg', 1, "vertical"),
+(3, '/site_web/img/chateaux/bois/image11.jpeg', 2, "vertical"),
+(3, '/site_web/img/chateaux/bois/image12.jpeg', 3, "vertical");
+
+insert into STRUCTURE (idL, nom_categorie, ordre_structure, types, ref) VALUES
+(1, 'Châteaux', 1, 'paragraphe', 1),
+(1, 'Châteaux', 2, 'galerie', 1),
+(1, 'Châteaux', 3, 'paragraphe', 2),
+(1, 'Châteaux', 4, 'galerie', 2),
+(1, 'Châteaux', 5, 'paragraphe', 3),
+(1, 'Châteaux', 6, 'galerie', 3);
+
 
 
 insert into LIEUX (nom_categorie, slug, nom, date_explo) 

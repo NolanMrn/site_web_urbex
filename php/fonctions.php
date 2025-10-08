@@ -29,4 +29,24 @@ function getParagraphe($conn, $idL, $categorie, $numParagraphe) {
     $paragraphes = $result->fetch_assoc(); 
     return $paragraphes['paragraphe' . $numParagraphe] ?? '';
 }
+
+function getStrucure($conn, $idL, $categorie){
+    $statement = $conn->prepare(
+        'SELECT * FROM STRUCTURE WHERE idL = ? AND nom_categorie = ? ORDER BY ordre_structure'
+    );
+    $statement->bind_param("is", $idL, $categorie);
+    $statement->execute();
+    $structure = $statement->get_result();
+    return $structure;
+}
+
+function getImageGalerie($conn, $refGallerie){
+    $statement = $conn->prepare(
+        'SELECT * FROM IMAGEGALLERIE where idG = ?'
+    );
+    $statement->bind_param("i", $refGallerie);
+    $statement->execute();
+    $images = $statement->get_result();
+    return $images;
+}
 ?>

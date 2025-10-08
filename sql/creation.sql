@@ -1,3 +1,6 @@
+drop table if exists IMAGEGALLERIE;
+drop table if exists GALLERIE;
+drop table if exists STRUCTURE;
 drop table if exists DESCRIPTIFLIEUX;
 drop table if exists LIEUX;
 drop table if exists CATEGORIE;
@@ -31,12 +34,30 @@ create table DESCRIPTIFLIEUX (
     foreign key (idL) references LIEUX(idL)
 );
 
-create table IMAGELIEUX (
-    idI int,
+create table GALLERIE (
+    idG int auto_increment primary key,
     idL int,
     nom_categorie varchar(30),
-    cadrage enum("horizontal", "vertical"),
-    primary key (idI, idL, nom_categorie),
+    foreign key (nom_categorie) references CATEGORIE(nom_categorie),
+    foreign key (idL) references LIEUX(idL)
+);
+
+create table IMAGEGALLERIE (
+    idIG int auto_increment primary key,
+    idG int,
+    chemin varchar(200),
+    ordreImg int,
+    cadrage enum('vertical', 'horizontal'),
+    foreign key (idG) references GALLERIE(idG)
+);
+
+create table STRUCTURE (
+    idS int auto_increment primary key,
+    idL int,
+    nom_categorie varchar(30),
+    ordre_structure int,
+    types enum('paragraphe', 'galerie'),
+    ref int,
     foreign key (nom_categorie) references CATEGORIE(nom_categorie),
     foreign key (idL) references LIEUX(idL)
 );

@@ -24,6 +24,7 @@ if ($lieu) {
     for ($i = 1; $i <= 5; $i++) {
         $paragraphes[$i] = getParagraphe($conn, $lieu["idL"], $lieu["nom_categorie"], $i);
     }
+    $structure = getStrucure($conn, $lieu["idL"], $lieu["nom_categorie"]);
 } else {
     die ("<p>Lieu introuvable 😕</p>");
 }
@@ -94,50 +95,22 @@ if ($lieu) {
             </section>
             <section class="exploration">
                 <?php
-                    echo "<p>{$paragraphes[1]}</p>";
-                    ?>
-                <article class="horizontal">
-                    <img src="/site_web/img/chateaux/bois/image1.jpeg" alt="">
-                </article>
-                <article class="horizontal">
-                    <img src="/site_web/img/chateaux/bois/image2.jpeg" alt="">
-                </article>
-                <article class="horizontal">
-                    <img src="/site_web/img/chateaux/bois/image3.jpeg" alt="">
-                </article>
-                <?php
-                    echo "<p>{$paragraphes[2]}</p>";
-                    ?>
-                <article class="vertical">
-                    <img src="/site_web/img/chateaux/bois/image4.jpeg" alt="">
-                </article>
-                <article class="horizontal">
-                    <img src="/site_web/img/chateaux/bois/image5.jpeg" alt="">
-                </article>
-                <article class="horizontal">
-                    <img src="/site_web/img/chateaux/bois/image6.jpeg" alt="">
-                </article>
-                <article class="horizontal">
-                    <img src="/site_web/img/chateaux/bois/image7.jpeg" alt="">
-                </article>
-                <article class="horizontal">
-                    <img src="/site_web/img/chateaux/bois/image8.jpeg" alt="">
-                </article>
-                <article class="horizontal">
-                    <img src="/site_web/img/chateaux/bois/image9.jpeg" alt="">
-                </article>
-                <?php
-                    echo "<p>{$paragraphes[3]}</p>";
-                    ?>
-                <article class="vertical">
-                    <img src="/site_web/img/chateaux/bois/image10.jpeg" alt="">
-                </article>
-                <article class="vertical">
-                    <img src="/site_web/img/chateaux/bois/image11.jpeg" alt="">
-                </article>
-                <article class="vertical">
-                    <img src="/site_web/img/chateaux/bois/image12.jpeg" alt="">
-                </article>
+                while ($bloc = $structure->fetch_assoc()) {
+                    if ($bloc["types"] == "paragraphe") {
+                        echo "<p>{$paragraphes[$bloc['ref']]}</p>";
+                    }
+                    else if ($bloc["types"] == "galerie"){
+                        $images = getImageGalerie($conn, $bloc["ref"]);
+                        while ($img = $images->fetch_assoc()) {
+                            $chemin = $img["chemin"];
+                            $cadrage = $img["cadrage"];
+                            echo "<article class=\"$cadrage\">
+                                    <img src=\"$chemin\" alt=\"\">
+                                </article>";
+                        }
+                    }
+                }
+                ?>
             </section>
         </div>
     </main>
