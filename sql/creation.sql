@@ -8,7 +8,7 @@ drop table if exists CATEGORIE;
 
 create table CATEGORIE (
     nom_categorie varchar(30) primary key,
-    description longtext
+    description_cat longtext
 );
 
 create table LIEUX (

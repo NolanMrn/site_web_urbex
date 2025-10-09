@@ -34,7 +34,7 @@ function getPays($conn, $idL, $categorie) {
 
 function getStrucure($conn, $idL, $categorie){
     $statement = $conn->prepare(
-        'SELECT * FROM STRUCTURE WHERE idL = ? AND nom_categorie = ? ORDER BY ordre_structure'
+        'SELECT types, ref FROM STRUCTURE WHERE idL = ? AND nom_categorie = ? ORDER BY ordre_structure'
     );
     $statement->bind_param("is", $idL, $categorie);
     $statement->execute();
@@ -44,7 +44,7 @@ function getStrucure($conn, $idL, $categorie){
 
 function getImageGalerie($conn, $refGallerie){
     $statement = $conn->prepare(
-        'SELECT * FROM IMAGEGALLERIE where idG = ?'
+        'SELECT chemin, cadrage FROM IMAGEGALLERIE where idG = ? ORDER BY ordreImg'
     );
     $statement->bind_param("i", $refGallerie);
     $statement->execute();
@@ -54,27 +54,29 @@ function getImageGalerie($conn, $refGallerie){
 
 function getParagraphe($conn, $refGallerie){
     $statement = $conn->prepare(
-        'SELECT * FROM PARAGRAPHE where idG = ?'
+        'SELECT paragraphe FROM PARAGRAPHE where idG = ?'
     );
     $statement->bind_param("i", $refGallerie);
     $statement->execute();
-    $paragraphe = $statement->get_result();
-    return $paragraphe;
+    $result = $statement->get_result();
+    $paragraphe = $result->fetch_assoc();
+    return $paragraphe["paragraphe"] ?? '';
 }
 
 function getDescription($conn, $categorie){
     $statement = $conn->prepare(
-        'SELECT * FROM CATEGORIE where nom_categorie = ?'
+        'SELECT description_cat FROM CATEGORIE where nom_categorie = ?'
     );
     $statement->bind_param("s", $categorie);
     $statement->execute();
-    $descrition = $statement->get_result();
-    return $descrition;
+    $result = $statement->get_result();
+    $description = $result->fetch_assoc();
+    return $description["description_cat"] ?? '';
 }
 
 function getAllLieuxCategorie($conn, $categorie){
     $statement = $conn->prepare(
-        'SELECT * FROM LIEUX NATURAL JOIN CATEGORIE WHERE nom_categorie = ? ORDER BY date_explo DESC;'
+        'SELECT idL, slug, nom, date_explo FROM LIEUX NATURAL JOIN CATEGORIE WHERE nom_categorie = ? ORDER BY date_explo DESC;'
     );
     $statement->bind_param("s", $categorie);
     $statement->execute();
@@ -88,7 +90,8 @@ function getImageBanniere($conn, $idL, $categorie){
     );
     $statement->bind_param("is", $idL, $categorie);
     $statement->execute();
-    $chemin = $statement->get_result();
-    return $chemin;
+    $result = $statement->get_result();
+    $chemin = $result->fetch_assoc();
+    return $chemin["chemin_img_banniere"] ?? '';
 }
 ?>

@@ -14,17 +14,6 @@ $statement->bind_param("ss", $slug, $categorie);
 $statement->execute();
 $result = $statement->get_result();
 $lieu = $result->fetch_assoc(); 
-
-if ($lieu) {
-    $annee = substr($lieu["date_explo"], 0, 4);
-    $moisChiffre = substr($lieu["date_explo"], 5, 2);
-    $moisLettre = getMoisFr($moisChiffre);
-    $histoireLieux = getHistoireLieux($conn, $lieu["idL"], $lieu["nom_categorie"]);
-    $pays = getPays($conn, $lieu["idL"], $lieu["nom_categorie"]);
-    $structure = getStrucure($conn, $lieu["idL"], $lieu["nom_categorie"]);
-} else {
-    die ("<p>Lieu introuvable 😕</p>");
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,21 +38,29 @@ if ($lieu) {
                 <div class="titre">
                     <?php
                     echo "<h1>{$lieu["nom"]}</h1>";
+
+                    $pays = getPays($conn, $lieu["idL"], $lieu["nom_categorie"]);
                     echo "<img src=\"/site_web/img/accueil/drapeau_{$pays}.png\" alt=\"\">";
+                    
+                    $annee = substr($lieu["date_explo"], 0, 4);
+                    $moisChiffre = substr($lieu["date_explo"], 5, 2);
+                    $moisLettre = getMoisFr($moisChiffre);
                     echo "<p>Date de l’exploration : {$moisLettre} {$annee}</p>";
                     ?>
                 </div>
                 <?php
+                $histoireLieux = getHistoireLieux($conn, $lieu["idL"], $lieu["nom_categorie"]);
                 echo "<p>{$histoireLieux}</p>";
                 ?>
             </section>
             <section class="exploration">
                 <?php
+                $structure = getStrucure($conn, $lieu["idL"], $lieu["nom_categorie"]);
                 while ($bloc = $structure->fetch_assoc()) {
+
                     if ($bloc["types"] == "paragraphe") {
-                        $result = getParagraphe($conn, $bloc["ref"]);
-                        $paragraphe = $result->fetch_assoc();
-                        echo "<p>{$paragraphe["paragraphe"]}</p>";
+                        $paragraphe = getParagraphe($conn, $bloc["ref"]);
+                        echo "<p>{$paragraphe}</p>";
                     }
                     else if ($bloc["types"] == "galerie"){
 

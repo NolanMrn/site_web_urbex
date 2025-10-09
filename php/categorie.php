@@ -37,24 +37,22 @@ $lieu = $result->fetch_assoc();
             <section class="explos">
                 <?php
                 echo "<h1>Catégorie : {$categorie}</h1>";
-                $result = getDescription($conn, $categorie);
-                $description = $result->fetch_assoc();
-                echo "<p>{$description["description"]}</p>"; 
+                $description = getDescription($conn, $categorie);
+                echo "<p>{$description}</p>"; 
                 ?>
                 <section class="explos_photos">
                     <?php
                     $result = getAllLieuxCategorie($conn, $categorie);
                     $nbLieux = $result->num_rows;
                     while ($lieu = $result->fetch_assoc()) {
-                        $resultImg = getImageBanniere($conn, $lieu["idL"], $categorie);
-                        $cheminImg = $resultImg->fetch_assoc();
+                        $cheminImg = getImageBanniere($conn, $lieu["idL"], $categorie);
                         $pays = getPays($conn, $lieu["idL"], $categorie);
                         $nom = $lieu["nom"];
                         $annee = substr($lieu["date_explo"], 0, 4);
                         $moisChiffre = substr($lieu["date_explo"], 5, 2);
                         $lienUrl = "/site_web/php/lieu_indiv.php?slug={$lieu["slug"]}&categorie={$categorie}";
                         echo "<article>
-                                <img src=\"{$cheminImg["chemin_img_banniere"]}\" alt=\"\">
+                                <img src=\"{$cheminImg}\" alt=\"\">
                                 <div class=\"content\">
                                     <article>
                                         <div>
@@ -76,7 +74,7 @@ $lieu = $result->fetch_assoc();
                             </article>";
                     }
                     $reste = $nbLieux % 3;
-                    if ($reste === 0) {
+                    if ($reste == 0) {
                         $nbAAjouter = 0;
                     } else {
                         $nbAAjouter = 3 - $reste;
