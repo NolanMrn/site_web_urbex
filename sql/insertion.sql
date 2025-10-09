@@ -1,12 +1,12 @@
-insert into CATEGORIE values ("Châteaux");
-insert into CATEGORIE values ("Usines");
+insert into CATEGORIE values ("Châteaux", "Votre texte ici");
+insert into CATEGORIE values ("Usines", "Votre texte ici");
 
 -- Le Château du Bois --
 insert into LIEUX (nom_categorie, slug, nom, date_explo) 
 values ("Châteaux", "bois", "Le Château du Bois", "2023-12-01");
 
-insert into DESCRIPTIFLIEUX (idL, nom_categorie, histoire_lieux)
-values (1, "Châteaux",
+insert into DESCRIPTIFLIEUX (idL, nom_categorie, chemin_img_banniere, pays,  histoire_lieux)
+values (1, "Châteaux", "/site_web/img/chateaux/bois/image2.jpeg", "francais",
 "Très peu d’informations sont disponibles sur Internet, à l’exception de quelques photos 
 d’archives avec comme date 1890-1950. Par chance, des amis ont eu l’occasion de discuter 
 avec la propriétaire actuelle du domaine, qui nous a confié que sa famille a racheté le 
@@ -67,8 +67,8 @@ insert into STRUCTURE (idL, nom_categorie, ordre_structure, types, ref) VALUES
 insert into LIEUX (nom_categorie, slug, nom, date_explo) 
 values ("Châteaux", "douves", "Le Château aux Douves", "2023-08-01");
 
-insert into DESCRIPTIFLIEUX (idL, nom_categorie, histoire_lieux)
-values (2, "Châteaux",
+insert into DESCRIPTIFLIEUX (idL, nom_categorie, chemin_img_banniere, pays, histoire_lieux)
+values (2, "Châteaux", "/site_web/img/chateaux/douves/image1.jpeg", "francais",
 "Construit vers 1200 par la famille d’Hangest, le château a été détruit pendant la Guerre de 
 Cent Ans, puis reconstruit sous le règne de Charles V. Pris par les Anglais en 1418, il est 
 repris par les Français en 1449 et rebâti à la Renaissance. Pendant plusieurs siècles, il 
@@ -115,8 +115,8 @@ insert into STRUCTURE (idL, nom_categorie, ordre_structure, types, ref) VALUES
 insert into LIEUX (nom_categorie, slug, nom, date_explo) 
 values ("Châteaux", "colimacon", "Le Château Colimaçon", "2024-07-01");
 
-insert into DESCRIPTIFLIEUX (idL, nom_categorie, histoire_lieux)
-values (3, "Châteaux",
+insert into DESCRIPTIFLIEUX (idL, nom_categorie, chemin_img_banniere, pays, histoire_lieux)
+values (3, "Châteaux", "/site_web/img/chateaux/colimacon/image1.jpeg", "francais", 
 "Ce manoir doit son surnom à son grand escalier en colimaçon fait de mosaïques. Abandonné depuis 
 environ cinquante ans, il ne reste plus grand-chose à voir à l’intérieur. L’incendie de 2023, qui 
 a détruit une partie de la toiture, n’a fait qu’aggraver son état déjà fragile. Aujourd’hui, la 
@@ -170,8 +170,8 @@ insert into STRUCTURE (idL, nom_categorie, ordre_structure, types, ref) VALUES
 insert into LIEUX (nom_categorie, slug, nom, date_explo) 
 values ("Châteaux", "fruminet", "Le Château de Fruminet", "2024-07-01");
 
-insert into DESCRIPTIFLIEUX (idL, nom_categorie, histoire_lieux)
-values (4, "Châteaux",
+insert into DESCRIPTIFLIEUX (idL, nom_categorie, chemin_img_banniere, pays, histoire_lieux)
+values (4, "Châteaux", "/site_web/img/chateaux/fruminet/image1.jpeg", "francais",
 "Édifié dans les années 1860, ce château de style Second Empire laisse encore deviner sa splendeur 
 passée, malgré son état de délabrement avancé. Au fil du temps, il connut plusieurs vies : il devint 
 d’abord un parc d’artillerie pour l’armée française, puis servit de prison durant les deux guerres 

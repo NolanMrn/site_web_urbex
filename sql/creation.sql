@@ -7,7 +7,8 @@ drop table if exists LIEUX;
 drop table if exists CATEGORIE;
 
 create table CATEGORIE (
-    nom_categorie varchar(30) primary key
+    nom_categorie varchar(30) primary key,
+    description longtext
 );
 
 create table LIEUX (
@@ -23,6 +24,8 @@ create table LIEUX (
 create table DESCRIPTIFLIEUX (
     idL int,
     nom_categorie varchar(30),
+    chemin_img_banniere varchar(200),
+    pays varchar(50),
     histoire_lieux longtext,
     primary key (idL, nom_categorie),
     foreign key (nom_categorie) references CATEGORIE(nom_categorie),

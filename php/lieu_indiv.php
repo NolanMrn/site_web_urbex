@@ -20,6 +20,7 @@ if ($lieu) {
     $moisChiffre = substr($lieu["date_explo"], 5, 2);
     $moisLettre = getMoisFr($moisChiffre);
     $histoireLieux = getHistoireLieux($conn, $lieu["idL"], $lieu["nom_categorie"]);
+    $pays = getPays($conn, $lieu["idL"], $lieu["nom_categorie"]);
     $structure = getStrucure($conn, $lieu["idL"], $lieu["nom_categorie"]);
 } else {
     die ("<p>Lieu introuvable 😕</p>");
@@ -48,9 +49,7 @@ if ($lieu) {
                 <div class="titre">
                     <?php
                     echo "<h1>{$lieu["nom"]}</h1>";
-                    ?>
-                    <img src="/site_web/img/accueil/drapeau_francais.png" alt="">
-                    <?php
+                    echo "<img src=\"/site_web/img/accueil/drapeau_{$pays}.png\" alt=\"\">";
                     echo "<p>Date de l’exploration : {$moisLettre} {$annee}</p>";
                     ?>
                 </div>
