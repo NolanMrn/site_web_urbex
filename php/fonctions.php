@@ -1,4 +1,13 @@
 <?php
+function getLieu($conn, $slug, $categorie) {
+    $statement = $conn->prepare('SELECT * FROM LIEUX WHERE slug = ? AND nom_categorie = ?');
+    $statement->bind_param("ss", $slug, $categorie);
+    $statement->execute();
+    $result = $statement->get_result();
+    $lieu = $result->fetch_assoc();
+    return $lieu;
+}
+
 function getMoisFr($numero) {
     $mois = [
         1 => 'janvier', 2 => 'février', 3 => 'mars',
@@ -8,6 +17,13 @@ function getMoisFr($numero) {
     ];
     $numero = (int)$numero;
     return $mois[$numero] ?? '';
+}
+
+function getDateFormate($date_explo){
+    $annee = substr($date_explo, 0, 4);
+    $moisChiffre = substr($date_explo, 5, 2);
+    $moisLettre = getMoisFr($moisChiffre);
+    return $moisLettre . " " . $annee;
 }
 
 function getHistoireLieux($conn, $idL, $categorie) {
@@ -32,7 +48,7 @@ function getPays($conn, $idL, $categorie) {
     return $pays['pays'] ?? '';
 }
 
-function getStrucure($conn, $idL, $categorie){
+function getStructure($conn, $idL, $categorie){
     $statement = $conn->prepare(
         'SELECT types, ref FROM STRUCTURE WHERE idL = ? AND nom_categorie = ? ORDER BY ordre_structure'
     );

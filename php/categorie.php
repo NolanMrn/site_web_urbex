@@ -5,7 +5,7 @@ include 'fonctions.php';
 if (isset($_GET['categorie'])) {
     $categorie = $_GET['categorie'];
 } else {
-    die("categorie pas dans l'url.");
+    die(header('Location: /404.php'));
 }
 
 $statement = $conn->prepare('SELECT * FROM LIEUX WHERE nom_categorie = ?');

@@ -1,23 +1,29 @@
 <?php
-include 'connexion_bd.php';
-include 'fonctions.php';
+require_once 'connexion_bd.php';
+require_once 'fonctions.php';
+
 
 if (isset($_GET['slug']) && (isset($_GET['categorie']))) {
     $slug = $_GET['slug'];
     $categorie = $_GET['categorie'];
 } else {
-    die("Slug ou categorie pas dans l'url.");
+    die(header('Location: /404.php'));
 }
 
-$statement = $conn->prepare('SELECT * FROM LIEUX WHERE slug = ? AND nom_categorie = ?');
-$statement->bind_param("ss", $slug, $categorie);
-$statement->execute();
-$result = $statement->get_result();
-$lieu = $result->fetch_assoc(); 
+$lieu = getLieu($conn, $slug, $categorie);
+if (!$lieu) {
+    header('Location: /404.php');
+    exit;
+}
+
+$nom = $lieu["nom"];
+$pays = getPays($conn, $lieu["idL"], $lieu["nom_categorie"]);
+$date = getDateFormate($lieu["date_explo"]);
+$structure = getStructure($conn, $lieu["idL"], $lieu["nom_categorie"]);
+$histoireLieux = getHistoireLieux($conn, $lieu["idL"], $lieu["nom_categorie"]);
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
      <link rel="stylesheet" type="text/css" href="/site_web/css/individuel/positionnement.css">
@@ -27,51 +33,40 @@ $lieu = $result->fetch_assoc();
     <link href="https://fonts.googleapis.com/css2?family=Antonio&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <?php
-    include 'header.php';
-    ?>
+    <?php include 'header.php'; ?>
     <main>
         <div class="container">
             <section class="histoire">
                 <div class="titre">
                     <?php
-                    echo "<h1>{$lieu["nom"]}</h1>";
-
-                    $pays = getPays($conn, $lieu["idL"], $lieu["nom_categorie"]);
-                    echo "<img src=\"/site_web/img/accueil/drapeau_{$pays}.png\" alt=\"\">";
-                    
-                    $annee = substr($lieu["date_explo"], 0, 4);
-                    $moisChiffre = substr($lieu["date_explo"], 5, 2);
-                    $moisLettre = getMoisFr($moisChiffre);
-                    echo "<p>Date de l’exploration : {$moisLettre} {$annee}</p>";
+                    printf('<h1>%s</h1>', htmlspecialchars($nom));
+                    printf(
+                        '<img src="/site_web/img/accueil/drapeau_%s.png" alt="drapeau %s">',
+                        htmlspecialchars($pays),
+                        htmlspecialchars($pays)
+                    );
+                    printf('<p>Date de l’exploration : %s</p>', htmlspecialchars($date));
                     ?>
                 </div>
                 <?php
-                $histoireLieux = getHistoireLieux($conn, $lieu["idL"], $lieu["nom_categorie"]);
-                echo "<p>{$histoireLieux}</p>";
+                printf('<p>%s</p>', htmlspecialchars($histoireLieux));
                 ?>
             </section>
             <section class="exploration">
                 <?php
-                $structure = getStrucure($conn, $lieu["idL"], $lieu["nom_categorie"]);
                 while ($bloc = $structure->fetch_assoc()) {
-
-                    if ($bloc["types"] == "paragraphe") {
-                        $paragraphe = getParagraphe($conn, $bloc["ref"]);
-                        echo "<p>{$paragraphe}</p>";
-                    }
-                    else if ($bloc["types"] == "galerie"){
-
+                    if ($bloc["types"] === "paragraphe") {
+                        printf('<p>%s</p>', htmlspecialchars(getParagraphe($conn, $bloc["ref"])));
+                    }   else if ($bloc["types"] === "galerie"){
                         $images = getImageGalerie($conn, $bloc["ref"]);
-                        while ($img = $images->fetch_assoc()) {
-
-                            $chemin = $img["chemin"];
-                            $cadrage = $img["cadrage"];
-                            echo "<article class=\"$cadrage\">
-                                    <img src=\"$chemin\" alt=\"\">
-                                </article>";
+                        foreach ($images as $img) {
+                            printf(
+                                '<article class="%s"><img src="%s" alt="%s"></article>',
+                                htmlspecialchars($img['cadrage']),
+                                htmlspecialchars($img['chemin']),
+                                htmlspecialchars("image de l'exploration")
+                            );
                         }
                     }
                 }
@@ -80,5 +75,4 @@ $lieu = $result->fetch_assoc();
         </div>
     </main>
 </body>
-
 </html>
