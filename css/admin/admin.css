@@ -46,6 +46,19 @@ main form {
     min-width: 300px;
 }
 
+.choix-orientation {
+    display: flex;
+    gap: 1.5em;
+}
+
+.btn-orientation {
+    flex: 1;
+}
+
+.btn-retour {
+    display: inline;
+}
+
 /*style*/
 
 main {
@@ -67,8 +80,11 @@ main h1 {
 
 .form-group input,
 .form-group textarea,
-.form-group select {
+.form-group select,
+.btn-orientation,
+.btn-retour {   
     padding: 10px;
     border: none;
     font-size: 1.5em;
+    background-color: white;
 }
