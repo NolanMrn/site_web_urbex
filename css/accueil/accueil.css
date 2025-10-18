@@ -1,89 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-header {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    position: fixed;
-    padding-top: 1em;
-    width: 100%;
-    z-index: 10;
-}
-
-header h1 {
-    flex-basis: 30%;
-    text-align: center;
-}
-
-header nav {
-    flex-basis: 50%;
-}
-
-header .menu {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 2em;
-}
-
-header .menu>li {
-    flex-grow: 1;
-    text-align: right;
-    position: relative;
-    cursor: pointer;
-}
-
-header .menu ul {
-    list-style: none;
-}
-
-header .menu li .sous_menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    padding: 0;
-    min-width: auto;
-    z-index: 100;
-}
-
-header .sous_menu li {
-    text-align: left;
-}
-
-header .menu li.has-sous_menu>a:hover+.sous_menu,
-header .menu li.has-sous_menu .sous_menu:hover {
-    display: block;
-}
-
-nav ul.menu>li.has-sous_menu>a::after {
-    display: inline-block;
-    margin-left: 0.3em;
-    font-size: 0.9em;
-}
-
-header .sous_menu li {
-    padding: 0.5em 1em;
-    white-space: nowrap;
-}
-
-header .search {
-    flex-basis: 20%;
-    text-align: center;
-}
-
-header .search2 {
-    padding: 0.65em 1.9em 0.65em 0.65em;
-}
-
-header .submit {
-    padding: 0.65em;
-}
+/*positionnement*/
 
 .photo_acc {
     position: relative;
@@ -215,4 +130,100 @@ header .submit {
 .explos_recentes_photos>article a div {
     padding: 0.2em 1em 0.4em 1em;
     margin-top: 1em;
+}
+
+/*style*/
+
+body {
+    background-color: #222222;
+}
+
+.photo_acc {
+    background: url("/site_web/img/accueil/grande_photo_accueil.jpeg") center/cover no-repeat;
+    color: white;
+    box-shadow: 0px 0px 30px 2px black;
+}
+
+.photo_acc .overlay {
+    background: rgba(0, 0, 0, 0.72);
+}
+
+.photo_acc h1 {
+    font-size: 8em;
+    font-weight: bold;
+    font-family: 'Anton', sans-serif;
+}
+
+.photo_acc a {
+    text-decoration: none;
+    color: white;
+    font-size: 4em;
+    font-family: 'Antonio', sans-serif;
+}
+
+.photo_acc article div:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.photo_acc article div {
+    border-radius: 2em;
+    border: 0.09em solid white;
+}
+
+.parent {
+    background-color: #222222;
+}
+
+.container {
+    background-color: #222222;
+}
+
+.explos_recentes h1 {
+    color: white;
+    font-size: 4em;
+    font-family: 'Anton', sans-serif;
+}
+
+.explos_recentes_photos>article {
+    background-color: white;
+}
+
+.content {
+    color: white;
+}
+
+.trait-blanc {
+    border: none;
+    background-color: white;
+}
+
+.explos_recentes_photos article article {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.explos_recentes_photos article h2 {
+    font-family: 'Antonio', sans-serif;
+    font-size: 1.7em;
+}
+
+.explos_recentes_photos article article p {
+    color: white;
+    font-family: 'Antonio', sans-serif;
+    font-size: 1.2em;
+}
+
+.explos_recentes_photos article a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.4em;
+    font-family: 'Antonio', sans-serif;
+}
+
+.explos_recentes_photos article a div {
+    border-radius: 2em;
+    border: 0.09em solid white;
+}
+
+.explos_recentes_photos article a div:hover {
+    background: rgba(0, 0, 0, 0.4);
 }

@@ -1,0 +1,139 @@
+/*positionnement*/
+
+.container {
+    max-width: 110em;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+main {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.histoire .titre {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    position: relative;
+    padding-top: 13.5em;
+}
+
+.histoire h1 {
+    margin-left: 1em;
+}
+
+.histoire img {
+    width: 4.5em;
+    margin-left: 1em;
+    height: auto;
+}
+
+.histoire .titre p {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: auto 1.73em 0.5em;
+}
+
+.histoire>p {
+    margin: 2.2em 1.9em 0.5em 1.9em;
+    line-height: 1.6;
+    padding: 0.2em 0.5em 0.3em 0.5em;
+}
+
+.exploration {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.exploration p {
+    flex-basis: 100%;
+    margin: 1.5em 1.9em 1.5em 1.9em;
+    line-height: 1.6;
+    padding: 0.2em 0.5em 0.3em 0.5em;
+}
+
+.exploration article {
+    display: flex;
+    margin: 1.5em 3em 1.5em 2.6em;
+    padding: 0.9em;
+    flex-grow: 1;
+}
+
+.exploration .horizontal {
+    flex-basis: 27%;
+    max-width: 36em;
+}
+
+.exploration .vertical {
+    flex-basis: 20.25%;
+}
+
+.exploration article>img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.text-block {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+/*style*/
+
+main {
+    background-color: #222222;
+}
+
+.container {
+    background-color: #222222;
+}
+
+.histoire h1 {
+    color: white;
+    font-size: 2.8em;
+    font-family: 'Anton', sans-serif;
+}
+
+.histoire .titre p {
+    color: white;
+    font-size: 1.7em;
+    font-family: 'Antonio', sans-serif;
+}
+
+.histoire>p {
+    color: white;
+    font-size: 1.5em;
+    background: rgba(0, 0, 0, 0.5);
+    border: white 0.08em solid;
+}
+
+.exploration p {
+    color: white;
+    font-size: 1.5em;
+    background: rgba(0, 0, 0, 0.5);
+    border: white 0.08em solid;
+}
+
+.exploration article {
+    background-color: white;
+}
+
+main a {
+    color: white;
+    font-style: italic;
+    text-decoration: none;
+}
+
+main a:hover {
+    color: #3B3B3B;
+    transition: 0.3s;
+}
