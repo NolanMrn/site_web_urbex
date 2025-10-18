@@ -26,6 +26,24 @@ function getDateFormate($date_explo){
     return $moisLettre . " " . $annee;
 }
 
+function getAllCategories($conn) {
+    $statement = $conn->prepare(
+        'SELECT * FROM CATEGORIE'
+    );
+    $statement->execute();
+    $categories = $statement->get_result();
+    return $categories;
+}
+
+function getAllPays($conn) {
+    $statement = $conn->prepare(
+        'SELECT DISTINCT pays FROM DESCRIPTIFLIEUX'
+    );
+    $statement->execute();
+    $pays = $statement->get_result();
+    return $pays;
+}
+
 function getHistoireLieux($conn, $idL, $categorie) {
     $statement = $conn->prepare(
         'SELECT histoire_lieux FROM DESCRIPTIFLIEUX WHERE idL = ? AND nom_categorie = ?'

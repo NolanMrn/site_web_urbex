@@ -1,0 +1,74 @@
+/*positionnement*/
+
+main {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    max-width: 130em;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+main h1 {
+    padding-top: 7em;
+}
+
+main form {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 1em;
+    row-gap: 1.5em;
+    column-gap: 1em;
+    width: 65%;
+}
+
+.form-group {
+    display: contents;
+}
+
+.form-group label {
+    text-align: right;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 10px;
+    min-width: 300px;
+}
+
+/*style*/
+
+main {
+    background-color: #222222;
+}
+
+.container {
+    background-color: #222222;
+}
+
+main h1 {
+    color: white;
+}
+
+.form-group label {
+    color: white;
+    font-size: 2em;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 10px;
+    border: none;
+    font-size: 1.5em;
+}
