@@ -1,9 +1,4 @@
-const page = document.querySelector('.container');
-const nbSection = page.dataset.nb;
-
-for (let j = 1; j <= nbSection; j++) {
-
-    const div = document.querySelector('.section' + j);
+function initSection(div) {
     const btnOrientation = div.querySelectorAll('.btn-orientation');
     const inputOrdre = div.querySelector('.ordre');
     const btnRetour = div.querySelector('.btn-retour');
@@ -36,3 +31,49 @@ for (let j = 1; j <= nbSection; j++) {
         inputOrdre.value = res;
     });
 }
+
+
+const page = document.querySelector('.container');
+let nbSection = 0;
+const btnAjouterSection = document.querySelector('.btn-ajouter_section');
+
+btnAjouterSection.addEventListener('click', () => {
+    nbSection++;
+    const nouvelleSection = document.createElement('div');
+    nouvelleSection.classList.add('section', 'section' + nbSection);
+    nouvelleSection.innerHTML = `
+        <div class="form-group">
+            <label for="paragraphe${nbSection}">Paragraphe n°${nbSection} :</label>
+            <textarea id="paragraphe${nbSection}" name="paragraphe${nbSection}" rows="4" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>Images :</label>
+            <div class="choix-orientation">
+                <button type="button" class="btn-orientation" data-orientation="vertical">Vertical</button>
+                <button type="button" class="btn-orientation" data-orientation="horizontal">Horizontal</button>
+                <button type="button" class="btn-retour">Annuler la dernière image</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ordre${nbSection}">Ordre :</label>
+            <textarea id="ordre${nbSection}" name="ordre${nbSection}" class="ordre" rows="2" readonly></textarea>
+        </div>
+    `;
+    const form = page.querySelector('form');
+    form.insertBefore(nouvelleSection, btnAjouterSection.closest('.form-group'));
+    initSection(nouvelleSection);
+});
+
+
+const btnSupprimerSection = document.querySelector('.btn-supprimer_section');
+
+btnSupprimerSection.addEventListener('click', () => {
+    if (nbSection > 0) {
+        
+        const derniereSection = document.querySelector('.section' + nbSection);
+        if (derniereSection) {
+            derniereSection.remove();
+        }
+    nbSection--;
+    }
+});
