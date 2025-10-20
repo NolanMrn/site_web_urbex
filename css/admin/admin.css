@@ -32,7 +32,8 @@ main form {
     width: 65%;
 }
 
-.form-group {
+.form-group,
+.section {
     display: contents;
 }
 
@@ -82,9 +83,14 @@ main h1 {
 .form-group textarea,
 .form-group select,
 .btn-orientation,
-.btn-retour {   
+.btn-retour,
+.btn-ajouter_section {   
     padding: 10px;
     border: none;
     font-size: 1.5em;
     background-color: white;
+}
+
+textarea {
+    resize: none;
 }

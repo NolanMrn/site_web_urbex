@@ -4,6 +4,7 @@
 
     $categories = getAllCategories($conn);
     $pays = getAllPays($conn);
+    $nbSection = 1;
     ?>
 
     <!DOCTYPE html>
@@ -20,7 +21,7 @@
     <body>
         <?php include 'header.php'; ?>
         <main>
-            <div class="container">
+            <div class="container" data-nb="<?= $nbSection ?>">
                 <h1>Ajouter un lieu</h1>
                 <form method="POST" action="">
                     <div class="form-group">
@@ -72,21 +73,33 @@
                         <textarea id="histoire" name="histoire" rows="6" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="paragraphe1">Paragraphe n°1 :</label>
-                        <textarea id="paragraphe1" name="paragraphe1" rows="4" required></textarea>
+                        <label for=""></label>
+                        <button type="button" class="btn-ajouter_section">Ajouter une section</button>
                     </div>
-                    <div class="form-group">
-                        <label>Images :</label>
-                        <div class="choix-orientation">
-                            <button type="button" class="btn-orientation" data-orientation="vertical">Vertical</button>
-                            <button type="button" class="btn-orientation" data-orientation="horizontal">Horizontal</button>
-                            <button type="button" class="btn-retour" id="btn-retour">Annuler la dernière image</button>
+                    <?php
+                    for ($i = 1; $i <= $nbSection; $i++) {
+                        ?>
+                        <div class="section section<?php echo $i ?>">
+                            <div class="form-group section<?php echo $i?>">
+                                <label for="paragraphe<?php echo $i?>">Paragraphe n°<?php echo $i?> :</label>
+                                <textarea class="paragraphe" name="paragraphe<?php echo $i?>" rows="4" required></textarea>
+                            </div>
+                            <div class="form-group section<?php echo $i?>">
+                                <label>Images :</label>
+                                <div class="choix-orientation">
+                                    <button type="button" class="btn-orientation" data-orientation="vertical">Vertical</button>
+                                    <button type="button" class="btn-orientation" data-orientation="horizontal">Horizontal</button>
+                                    <button type="button" class="btn-retour">Annuler la dernière image</button>
+                                </div>
+                            </div>
+                            <div class="form-group section<?php echo $i?>">
+                                <label for="ordre">Ordre :</label>
+                                <textarea name="ordre" class="ordre" rows="2" readonly></textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="ordre">Ordre :</label>
-                        <input type="text" name="ordre" id="ordre" readonly>
-                    </div>
+                        <?php
+                    }
+                    ?>
                     <script src="/site_web/js/admin.js">
                     </script>
                     <button type="submit" class="enregistrer">Enregistrer</button>
