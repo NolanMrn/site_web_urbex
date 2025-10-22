@@ -12,6 +12,12 @@ $date_explo = $_POST['date_explo'] ?? '';
 $num_banniere = $_POST['num_banniere'] ?? '';
 $histoire = $_POST['histoire'] ?? '';
 
+
+
+
+
+
+
 $paragraphes = [];
 $ordres = [];
 $listeCadrageFinal = [];
@@ -28,25 +34,8 @@ for ($i = 0 ; $i < $nbSections ; $i++) {
             $listeCadrageFinal[$i][] = $parts[1];
         }
     }
-    foreach ($listeCadrageFinal as $lof) {
-        foreach ($lof as $lo) {
-            echo $lo . " / ";
-        }
-    }
-    echo "<br>";
     $listeParagrapheFinal[$i] = explode("\n", $paragraphes[$i]);
-    foreach ($listeParagrapheFinal as $lpf) {
-        foreach ($lpf as $lp) {
-            echo $lp . " / ";
-        }
-        echo "<br>";
-    }
 }
 
-ajtLieux($conn, $categorie, $slug, $nom, $date_explo);
-ajtDescriptifLieux($conn, $slug, $categorie, $num_banniere, $pays, $histoire);
-ajtGallerie($conn, $categorie, $slug, $nbSections);
-ajtImageGallerie($conn, $categorie, $slug, $listeCadrageFinal);
-ajtParagraphe($conn, $categorie, $slug, $listeParagrapheFinal);
-ajtStructure($conn,  $categorie, $slug);
+ajtLieuxEntier($conn, $categorie, $slug, $nom, $date_explo, $num_banniere, $pays, $histoire, $nbSections, $listeCadrageFinal, $listeParagrapheFinal);
 ?>

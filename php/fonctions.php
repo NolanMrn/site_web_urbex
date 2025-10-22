@@ -159,10 +159,8 @@ function ajtLieux($conn, $categorie, $slug, $nom, $dateExplo){
     $statement->execute();
 }
 
-function ajtDescriptifLieux($conn, $slug, $categorie, $NumCheminImgBanniere, $pays, $histoire){
-    $idL = (int)getIdL($conn, $categorie, $slug);
+function ajtDescriptifLieux($conn, $idL, $slug, $categorie, $NumCheminImgBanniere, $pays, $histoire){
     $chemin = "/site_web/img/" . $categorie . "/" . $slug . "/image" . $NumCheminImgBanniere . ".jpeg";
-    echo $chemin;
     $statement = $conn->prepare(
         'INSERT INTO DESCRIPTIFLIEUX (idL, nom_categorie, chemin_img_banniere, pays,  histoire_lieux) 
         VALUES (?, ?, ?, ?, ?)'
@@ -171,8 +169,8 @@ function ajtDescriptifLieux($conn, $slug, $categorie, $NumCheminImgBanniere, $pa
     $statement->execute();
 }
 
-function ajtGallerie($conn, $categorie, $slug, $nbSections){
-    $idL = getIdL($conn, $categorie, $slug);
+function ajtGallerie($conn, $idL, $categorie, $nbSections){
+    echo $nbSections;
     for ($i = 0 ; $i < $nbSections ; $i++) {
         $statement = $conn->prepare(
             'INSERT INTO GALLERIE (idL, nom_categorie) 
@@ -183,14 +181,12 @@ function ajtGallerie($conn, $categorie, $slug, $nbSections){
     }
 }
 
-function ajtImageGallerie($conn, $categorie, $slug, $listeCadrage){
-    $idL = (int)getIdL($conn, $categorie, $slug);
-    $galleries = getGalleries($conn, $categorie, $idL);
+function ajtImageGallerie($conn, $galleriesArray, $categorie, $slug, $listeCadrage){
     $cheminDebut = "/site_web/img/" . $categorie . "/" . $slug . "/image";
     $cptOrdre = 1;
     $cptImage = 1;
     $index = 0;
-    while ($gallerie = $galleries->fetch_assoc()) {
+    foreach ($galleriesArray as $gallerie) {
         foreach ($listeCadrage[$index] as $cadrage) {
             $cheminEntier = $cheminDebut . $cptImage . ".jpeg";
             $statement = $conn->prepare(
@@ -207,11 +203,9 @@ function ajtImageGallerie($conn, $categorie, $slug, $listeCadrage){
     }
 }
 
-function ajtParagraphe($conn, $categorie, $slug, $listeParagraphe){
-    $idL = (int)getIdL($conn, $categorie, $slug);
-    $galleries = getGalleries($conn, $categorie, $idL);
+function ajtParagraphe($conn, $galleriesArray, $listeParagraphe){
     $index = 0;
-    while ($gallerie = $galleries->fetch_assoc()) {
+    foreach ($galleriesArray as $gallerie) {
         $statement = $conn->prepare(
             'INSERT INTO PARAGRAPHE (idG, paragraphe)
             VALUES (?, ?)'
@@ -222,13 +216,10 @@ function ajtParagraphe($conn, $categorie, $slug, $listeParagraphe){
     }
 }
 
-function ajtStructure($conn,  $categorie, $slug){
-    $idL = (int)getIdL($conn, $categorie, $slug);
-    $galleries = getGalleries($conn, $categorie, $idL);
+function ajtStructure($conn, $idL, $galleriesArray, $categorie){
     $ref = ["paragraphe", "galerie"];
     $cptOrdre = 1;
-    $index = 0;
-    while ($gallerie = $galleries->fetch_assoc()) {
+    foreach ($galleriesArray as $gallerie) {
         for ($i = 0 ; $i < 2 ; $i++) {
              $statement = $conn->prepare(
                 'INSERT INTO STRUCTURE (idL, nom_categorie, ordre_structure, types, ref)
@@ -238,7 +229,27 @@ function ajtStructure($conn,  $categorie, $slug){
             $statement->execute();
             $cptOrdre += 1;
         }
-        $index++;
     }
+}
+
+function ajtLieuxEntier($conn, $categorie, $slug, $nom, $date_explo, $num_banniere, $pays, $histoire, $nbSections, $listeCadrageFinal, $listeParagrapheFinal) {
+    
+    ajtLieux($conn, $categorie, $slug, $nom, $date_explo);
+    $idL = (int)getIdL($conn, $categorie, $slug);
+
+    ajtDescriptifLieux($conn, $idL, $slug, $categorie, $num_banniere, $pays, $histoire);
+
+    ajtGallerie($conn, $idL, $categorie, $nbSections);
+    $galleries = getGalleries($conn, $categorie, $idL);
+    $galleriesArray = [];
+    while ($g = $galleries->fetch_assoc()) {
+        $galleriesArray[] = $g;
+    }
+
+    ajtImageGallerie($conn, $galleriesArray, $categorie, $slug, $listeCadrageFinal);
+
+    ajtParagraphe($conn, $galleriesArray, $listeParagrapheFinal);
+
+    ajtStructure($conn,  $idL, $galleriesArray, $categorie);
 }
 ?>
