@@ -3,26 +3,28 @@ require_once 'connexion_bd.php';
 require_once 'fonctions.php';
 
 $nbSections = $_POST['nbSections'] ?? 0;
-
 $nom = $_POST['nom'] ?? '';
 $slug = $_POST['slug'] ?? '';
-$categorie = $_POST['categorie'] ?? '';
-$pays = $_POST['pays'] ?? '';
-$date_explo = $_POST['date_explo'] ?? '';
 $num_banniere = $_POST['num_banniere'] ?? '';
 $histoire = $_POST['histoire'] ?? '';
 
-
-
-
-
-
+if ($_POST['nouveau_pays'] === "") {
+    $pays = $_POST['pays'] ?? '';
+} else {
+    $pays = $_POST['nouveau_pays'] ?? '';
+}
+if ($_POST['nouvelle_categorie'] === "") {
+    $categorie = $_POST['categorie'] ?? '';
+} else {
+    $categorie = $_POST['nouvelle_categorie'] ?? '';
+}
+$date_explo = $_POST['date_explo'] ?? '';
+$date_explo_bonne = $date_explo . "-01";
 
 $paragraphes = [];
 $ordres = [];
 $listeCadrageFinal = [];
 $listeParagrapheFinal = [];
-
 for ($i = 0 ; $i < $nbSections ; $i++) {
     $paragraphes[$i] = $_POST['paragraphe' . $i + 1] ?? '';
     $ordres[$i] = $_POST['ordre' . $i + 1] ?? '';
@@ -37,5 +39,13 @@ for ($i = 0 ; $i < $nbSections ; $i++) {
     $listeParagrapheFinal[$i] = explode("\n", $paragraphes[$i]);
 }
 
-ajtLieuxEntier($conn, $categorie, $slug, $nom, $date_explo, $num_banniere, $pays, $histoire, $nbSections, $listeCadrageFinal, $listeParagrapheFinal);
+
+$SlugUnique = verifSlugUniqueParCategorie($conn, $slug, $categorie);
+if ($SlugUnique) {
+    echo "slug unique";
+} else {
+    echo "slug déjà existant";
+}
+
+/*ajtLieuxEntier($conn, $categorie, $slug, $nom, $date_explo_bonne, $num_banniere, $pays, $histoire, $nbSections, $listeCadrageFinal, $listeParagrapheFinal);*/
 ?>

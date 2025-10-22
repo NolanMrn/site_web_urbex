@@ -150,6 +150,21 @@ function getGalleries($conn, $categorie, $idL) {
     return $galleries;
 }
 
+function verifSlugUniqueParCategorie($conn, $slug, $categorie) {
+    $statement = $conn->prepare(
+        'SELECT count(*) as nbSlug FROM LIEUX WHERE slug = ? and nom_categorie = ?'
+    );
+    $statement->bind_param("ss", $slug, $categorie);
+    $statement->execute();
+    $result = $statement->get_result();
+    $nbSlug = $result->fetch_assoc(); 
+    if ($nbSlug['nbSlug'] === 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function ajtLieux($conn, $categorie, $slug, $nom, $dateExplo){
     $statement = $conn->prepare(
         'INSERT INTO LIEUX (nom_categorie, slug, nom, date_explo) 

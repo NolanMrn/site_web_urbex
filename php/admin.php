@@ -5,6 +5,7 @@
     $categories = getAllCategories($conn);
     $pays = getAllPays($conn);
     $nbSections = 0;
+    $nbPhotos = 0;
     ?>
 
     <!DOCTYPE html>
@@ -23,20 +24,21 @@
         <main>
             <div class="container" data-nbSections = "<?php echo $nbSections ?>">
                 <h1>Ajouter un lieu</h1>
-                <form method="POST" action="save_lieu.php">
+                <form method="POST" action="save_lieu.php" onsubmit="return validerFormulaire()">
                     <input type="hidden" name="nbSections" id="nbSections" value="<?php echo $nbSections; ?>">
+                    <input type="hidden" name="nbPhotos" id="nbPhotos" value="<?php echo $nbPhotos; ?>">
                     <div class="form-group">
                         <label for="nom">Nom :</label>
                         <input type="text" id="nom" name="nom" required>
                     </div>
                     <div class="form-group">
                         <label for="slug">Slug :</label>
-                        <input type="text" id="slug" name="slug" required>
+                        <input type="text" id="slug" name="slug" placeholder="doit être unique dans une catégorie" required>
                     </div>
                     <div class="form-group">
                         <label for="categorie">Catégorie :</label>
                         <select id="categorie" name="categorie" required>
-                            <option value="">-- Choisir une catégorie --</option>
+                            <option value="" disabled selected></option>
                             <?php
                             while ($categorie = $categories->fetch_assoc()) {
                                 printf(
@@ -49,10 +51,14 @@
                             <option value="autre">Autre...</option>
                         </select>
                     </div>
+                    <div class="form-group" id="nouvelle_categorie_container" style="display:none;">
+                        <label for="nouvelle_categorie">Nouvelle catégorie :</label>
+                        <input type="text" id="nouvelle_categorie" name="nouvelle_categorie">
+                    </div>
                     <div class="form-group">
                         <label for="pays">Pays :</label>
                         <select id="pays" name="pays" required>
-                            <option value="">-- Choisir un Pays --</option>
+                            <option value="" disabled selected></option>
                             <?php
                             while ($unPays = $pays->fetch_assoc()) {
                                 printf(
@@ -65,13 +71,17 @@
                             <option value="autre">Autre...</option>
                         </select>
                     </div>
+                    <div class="form-group" id="nouveau_pays_container" style="display:none;">
+                        <label for="nouveau_pays">Nouveau Pays :</label>
+                        <input type="text" id="nouveau_pays" name="nouveau_pays">
+                    </div>
                     <div class="form-group">
                         <label for="date_explo">Date exploration :</label>
-                        <input type="text" id="date_explo" name="date_explo" placeholder="Sous la forme AAAA-MM-JJ" required>
+                        <input type="text" id="date_explo" name="date_explo" placeholder="Sous la forme AAAA-MM" required>
                     </div>
                     <div class="form-group">
                         <label for="num_banniere">Num photo bannière :</label>
-                        <input type="text" id="num_banniere" name="num_banniere" required>
+                        <input type="number" id="num_banniere" name="num_banniere" required>
                     </div>
                     <div class="form-group">
                         <label for="histoire">Histoire du lieu :</label>
