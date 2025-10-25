@@ -44,6 +44,18 @@ function getAllPays($conn) {
     return $pays;
 }
 
+function getAllAnnees($conn) {
+    $sql = "SELECT DISTINCT YEAR(date_explo) AS annee FROM LIEUX ORDER BY date_explo DESC";
+    $result = $conn->query($sql);
+    $annees = [];
+    if ($result) {
+        while ($row = $result->fetch_assoc()) {
+            $annees[] = $row['annee'];
+        }
+    }
+    return $annees;
+}
+
 function getHistoireLieux($conn, $idL, $categorie) {
     $statement = $conn->prepare(
         'SELECT histoire_lieux FROM DESCRIPTIFLIEUX WHERE idL = ? AND nom_categorie = ?'
@@ -118,6 +130,15 @@ function getAllLieuxCategorie($conn, $categorie){
     return $lieux;
 }
 
+function getAllLieux($conn){
+    $statement = $conn->prepare(
+        'SELECT idL, slug, nom, date_explo, nom_categorie FROM LIEUX ORDER BY date_explo DESC;'
+    );
+    $statement->execute();
+    $lieux = $statement->get_result();
+    return $lieux;
+}
+
 function getImageBanniere($conn, $idL, $categorie){
     $statement = $conn->prepare(
         'SELECT chemin_img_banniere FROM DESCRIPTIFLIEUX WHERE idL = ? AND nom_categorie = ?'
@@ -162,6 +183,19 @@ function verifSlugUniqueParCategorie($conn, $slug, $categorie) {
         return true;
     } else {
         return false;
+    }
+}
+
+function verifOuAjtCategorie($conn, $categorie) {
+    $statement = $conn->prepare('SELECT COUNT(*) AS nb FROM CATEGORIE WHERE nom_categorie = ?');
+    $statement->bind_param("s", $categorie);
+    $statement->execute();
+    $result = $statement->get_result();
+    $row = $result->fetch_assoc();
+    if ($row['nb'] == 0) {
+        $insert = $conn->prepare('INSERT INTO CATEGORIE (nom_categorie) VALUES (?)');
+        $insert->bind_param("s", $categorie);
+        $insert->execute();
     }
 }
 
@@ -247,7 +281,8 @@ function ajtStructure($conn, $idL, $galleriesArray, $categorie){
 }
 
 function ajtLieuxEntier($conn, $categorie, $slug, $nom, $date_explo, $num_banniere, $pays, $histoire, $nbSections, $listeCadrageFinal, $listeParagrapheFinal) {
-    
+    verifOuAjtCategorie($conn, $categorie);
+
     ajtLieux($conn, $categorie, $slug, $nom, $date_explo);
     $idL = (int)getIdL($conn, $categorie, $slug);
 

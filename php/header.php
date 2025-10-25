@@ -3,18 +3,7 @@
     <nav>
         <ul class="menu">
             <li><a href="/site_web/pages/accueil.html">Accueil</a></li>
-            <li class="has-sous_menu"><a href="">Catégorie</a>
-                <ul class="sous_menu">
-                    <li><a href="/site_web/pages/administratifs.html">Administratif</a></li>
-                    <li><a href="/site_web/php/categorie.php?categorie=Châteaux">Château</a></li>
-                    <li><a href="/site_web/pages/hopitaux.html">Hôpital</a></li>
-                    <li><a href="/site_web/pages/loisirs.html">Loisir</a></li>
-                    <li><a href="/site_web/pages/maisons.html">Maison</a></li>
-                    <li><a href="/site_web/pages/militaires.html">Militaire</a></li>
-                    <li><a href="/site_web/pages/religieux.html">Religieux</a></li>
-                    <li><a href="/site_web/pages/usines.html">Usine</a></li>
-                </ul>
-            </li>
+            <li><a href="/site_web/php/galerie.php">Galerie</a></li>
             <li class="has-sous_menu"><a href="">Pays</a>
                 <ul class="sous_menu">
                     <li><a href="">France</a></li>

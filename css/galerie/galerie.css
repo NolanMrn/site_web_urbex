@@ -1,0 +1,204 @@
+/*positionnement*/
+
+main {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 145em;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.block {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 12.5em;
+}
+
+.filtre {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 15%;
+    background-color: black;
+    padding: 1.2em;
+    box-shadow: 0px 0px 15px 15px black;
+    margin-top: 1em;
+}
+
+.filtre article{
+    display: flex;
+    flex-direction: column;
+}
+
+.filtre article p {
+    color: white;
+    font-family: 'Antonio', sans-serif;
+    font-size: 1.2em;
+    margin: 0.8em 0;
+}
+
+.filtre li {
+    list-style-type: none;
+}
+
+.filtre article button {
+    color: white;
+    text-decoration: none;
+    margin: 0.2em 2em;
+    background: none;
+    border: none; 
+    padding: 0.5em 5em 0.5em 1em;
+    cursor: pointer;
+    width: 10em;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.filtre article button:hover {
+    background-color: #222222;
+    transform: scale(1.05);
+}
+
+.explos_photos {
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 70%;
+    flex-grow: 1;
+    margin-left: 5em;
+    max-height: 79.5vh;
+    overflow-y: auto;
+    border: 0.125em solid black;
+    box-shadow: 0px 0px 15px 10px black;
+    border-radius: 20px 0 0 20px;
+    padding: 1em;
+}
+
+.explos_photos>article {
+    flex-basis: 25%;
+    flex-grow: 1;
+    margin: 2.7em;
+    padding: 1em;
+    position: relative;
+    overflow: hidden;
+}
+
+.explos_photos>article>img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    margin-top: 1.7em;
+}
+
+.trait-blanc {
+    flex-grow: 1;
+    border: none;
+    height: 2px;
+}
+
+.explos_photos>article article {
+    width: 25em;
+    padding-top: 2em;
+}
+
+.explos_photos>article article div {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 2.2em;
+}
+
+.explos_photos>article article img {
+    width: 2.4em;
+    height: auto;
+    margin-left: 0.2em;
+}
+
+.explos_photos>article article div p{
+    margin-right: 0.4em;
+}
+
+.explos_photos>article a {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.explos_photos>article a div {
+    padding: 0.2em 1em 0.4em 1em;
+    margin-top: 1em;
+}
+
+/*styles*/
+
+main {
+    background-color: #222222;
+}
+
+.container {
+    background-color: #222222;
+}
+
+.explos_photos>article {
+    background-color: white;
+}
+
+.content {
+    color: white;
+}
+
+.trait-blanc {
+    border: none;
+    height: 2px;
+    background-color: white;
+}
+
+.explos_photos>article article {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.explos_photos>article article h2 {
+    font-family: 'Antonio', sans-serif;
+    font-size: 1.7em;
+    margin: 0 0.8em 0 0.8em;
+}
+
+.explos_photos>article article p {
+    color: white;
+    font-family: 'Antonio', sans-serif;
+    font-size: 1.2em;
+}
+
+.explos_photos>article a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.4em;
+    font-family: 'Antonio', sans-serif;
+}
+
+.explos_photos>article a div {
+    border-radius: 2em;
+    border: 0.09em solid white;
+}
+
+.explos_photos>article a div:hover {
+    background: rgba(0, 0, 0, 0.4);
+}

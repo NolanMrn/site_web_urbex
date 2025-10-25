@@ -1,0 +1,111 @@
+<?php
+include 'connexion_bd.php';
+include 'fonctions.php';
+
+$lieux = getAllLieux($conn);
+$nbLieux = $lieux->num_rows;
+$categories = getAllCategories($conn);
+$allPays = getAllPays($conn);
+$AllAnnees = getAllAnnees($conn);
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/site_web/css/galerie/galerie.css">
+    <link rel="stylesheet" type="text/css" href="/site_web/css/header/header.css">
+    <title>Exploratio_nln</title>
+    <link rel="icon" type="image/PNG" href="/site_web/img/accueil/photo_profil.png">
+    <link href="https://fonts.googleapis.com/css2?family=Antonio&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+</head>
+<body>
+    <?php include 'header.php'; ?>
+    <main>
+        <div class="container">
+            <section class="block">
+                <nav class="filtre">
+                    <article>
+                        <p>Filtré par catégorie :</p>
+                        <ul>
+                            <?php
+                            while ($cat = $categories->fetch_assoc()) {
+                                printf('<li><button>%s</button></li>', htmlspecialchars($cat['nom_categorie']));
+                            }
+                            ?>
+                        </ul>
+                    </article>
+                    <article>
+                        <p>Filtré par pays :</p>
+                        <ul>
+                            <?php
+                                while ($p = $allPays->fetch_assoc()) {      
+                                    printf('<li><button>%s</button></li>', htmlspecialchars($p['pays']));
+                                }
+                                ?>
+                        </ul>
+                    </article>
+                    <article>
+                        <p>Filtré par années :</p>
+                        <ul>
+                            <?php
+                            foreach ($AllAnnees as $a) {
+                                printf('<li><button>%s</button></li>', htmlspecialchars($a));
+                            }
+                            ?>
+                        </ul>
+                    </article>
+                </nav>
+                <section class="explos_photos">
+                    <?php
+                    while ($lieu = $lieux->fetch_assoc()) {
+                        $categorie = htmlspecialchars($lieu["nom_categorie"]);
+                        $cheminImg = htmlspecialchars(getImageBanniere($conn, $lieu["idL"], $categorie));
+                        $pays = htmlspecialchars(getPays($conn, $lieu["idL"], $categorie));
+                        $nom = htmlspecialchars($lieu["nom"]);
+                        $annee = htmlspecialchars(substr($lieu["date_explo"], 0, 4));
+                        $moisChiffre = htmlspecialchars(substr($lieu["date_explo"], 5, 2));
+                        $slug = htmlspecialchars($lieu["slug"]);
+                        $lienUrl = htmlspecialchars(
+                            "/site_web/php/lieu_indiv.php?slug={$slug}&categorie={$categorie}");
+                        
+                        echo "<article>
+                                <img src=\"{$cheminImg}\" alt=\"\">
+                                <div class=\"content\">
+                                    <article>
+                                        <div>
+                                            <hr class=\"trait-blanc\">
+                                            <h2>{$nom}</h2>
+                                            <hr class=\"trait-blanc\">
+                                        </div>
+                                        <div>
+                                            <img src=\"/site_web/img/accueil/drapeau_{$pays}.png\" alt=\"\">
+                                            <p>{$moisChiffre}/{$annee}</p>
+                                        </div>
+                                    </article>
+                                    <a href=\"{$lienUrl}\">
+                                        <div>
+                                            <p>Découvrir</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </article>";
+                    }
+                    $reste = $nbLieux % 3;
+                    if ($reste == 0) {
+                        $nbAjouter = 0;
+                    } else {
+                        $nbAjouter = 3 - $reste;
+                    }
+                    for ($i = 0; $i < $nbAjouter; $i++) {
+                        printf("<article style=\"background-color: #222222;\"></article>");
+                    }
+                    ?>
+                </section>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
