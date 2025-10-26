@@ -61,10 +61,16 @@ $histoireLieux = getHistoireLieux($conn, $lieu["idL"], $lieu["nom_categorie"]);
                     }   else if ($bloc["types"] === "galerie"){
                         $images = getImageGalerie($conn, $bloc["ref"]);
                         foreach ($images as $img) {
+                            $cheminPhysique = $_SERVER['DOCUMENT_ROOT'] . $img['chemin'];
+                            if (!file_exists($cheminPhysique)) {
+                                $cheminImg = "/site_web/img/accueil/image_defaut.png";
+                            } else {
+                                $cheminImg = $img['chemin'];
+                            }
                             printf(
                                 '<article class="%s"><img src="%s" alt="%s"></article>',
                                 htmlspecialchars($img['cadrage']),
-                                htmlspecialchars($img['chemin']),
+                                htmlspecialchars($cheminImg),
                                 htmlspecialchars("image de l'exploration")
                             );
                         }

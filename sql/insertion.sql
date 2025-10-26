@@ -1,19 +1,19 @@
-insert into CATEGORIE values ("chateaux", "Votre texte ici");
+insert into CATEGORIE values ("Châteaux", "Votre texte ici");
 insert into CATEGORIE values ("Usines", "Votre texte ici");
 
 -- Le Château du Bois --
 insert into LIEUX (nom_categorie, slug, nom, date_explo) 
-values ("chateaux", "bois", "Le Château du Bois", "2023-12-01");
+values ("Châteaux", "bois", "Le Château du Bois", "2023-12-01");
 
 insert into DESCRIPTIFLIEUX (idL, nom_categorie, chemin_img_banniere, pays,  histoire_lieux)
-values (1, "chateaux", "/site_web/img/chateaux/bois/image2.jpeg", "francais",
+values (1, "Châteaux", "/site_web/img/chateaux/bois/image2.jpeg", "france",
 "Très peu d’informations sont disponibles sur Internet, à l’exception de quelques photos d’archives avec comme date 1890-1950. Par chance, des amis ont eu l’occasion de discuter avec la propriétaire actuelle du domaine, qui nous a confié que sa famille a racheté le domaine, avec le château, en 1971. À cette époque, la bâtisse était déjà à l’abandon. On peut donc en déduire, grâce aux archives, que le château a surement été construit vers 1890 et qu’il a été abandonné dans les années 1950. De plus, elle a précisé que le château avait été utilisé pendant un temps par un vétérinaire qui le louait. Celui-ci s’en servait comme lieu de stockage pour les grains, ce qui explique la présence des machines que l’on peut encore voir à l’intérieur.
 Aujourd’hui, le château est en péril : les propriétaires, faute de moyens, le laissent se détériorer progressivement, et sans restauration, il continuera à se dégrader jusqu’à s’effondrer."
 );
 
-insert into GALLERIE (idL, nom_categorie) values (1, 'chateaux');
-insert into GALLERIE (idL, nom_categorie) values (1, 'chateaux');
-insert into GALLERIE (idL, nom_categorie) values (1, 'chateaux');
+insert into GALLERIE (idL, nom_categorie) values (1, 'Châteaux');
+insert into GALLERIE (idL, nom_categorie) values (1, 'Châteaux');
+insert into GALLERIE (idL, nom_categorie) values (1, 'Châteaux');
 
 insert into IMAGEGALLERIE (idG, chemin, ordreImg, cadrage) values
 (1, '/site_web/img/chateaux/bois/image1.jpeg', 1, "horizontal"),
@@ -37,26 +37,26 @@ insert into PARAGRAPHE (idG, paragraphe) values
 (3, "Un seul escalier permet d’accéder à l’étage du château. Malheureusement, une fois arrivé en haut, il est impossible d’avancer davantage en raison du plancher qui s’est effondré à plusieurs endroits.");
 
 insert into STRUCTURE (idL, nom_categorie, ordre_structure, types, ref) VALUES
-(1, 'chateaux', 1, 'paragraphe', 1),
-(1, 'chateaux', 2, 'galerie', 1),
-(1, 'chateaux', 3, 'paragraphe', 2),
-(1, 'chateaux', 4, 'galerie', 2),
-(1, 'chateaux', 5, 'paragraphe', 3),
-(1, 'chateaux', 6, 'galerie', 3);
+(1, 'Châteaux', 1, 'paragraphe', 1),
+(1, 'Châteaux', 2, 'galerie', 1),
+(1, 'Châteaux', 3, 'paragraphe', 2),
+(1, 'Châteaux', 4, 'galerie', 2),
+(1, 'Châteaux', 5, 'paragraphe', 3),
+(1, 'Châteaux', 6, 'galerie', 3);
 
 
 -- Le Château aux Douves --
 insert into LIEUX (nom_categorie, slug, nom, date_explo) 
-values ("chateaux", "douves", "Le Château aux Douves", "2023-08-01");
+values ("Châteaux", "douves", "Le Château aux Douves", "2023-08-01");
 
 insert into DESCRIPTIFLIEUX (idL, nom_categorie, chemin_img_banniere, pays, histoire_lieux)
-values (2, "chateaux", "/site_web/img/chateaux/douves/image1.jpeg", "francais",
+values (2, "Châteaux", "/site_web/img/chateaux/douves/image1.jpeg", "france",
 "Construit vers 1200 par la famille d’Hangest, le château a été détruit pendant la Guerre de Cent Ans, puis reconstruit sous le règne de Charles V. Pris par les Anglais en 1418, il est repris par les Français en 1449 et rebâti à la Renaissance. Pendant plusieurs siècles, il appartient à la famille de Roncherolles et accueille notamment Henri IV. Aux XIXᵉ et XXᵉ siècles, le château passe entre différentes familles nobles et industrielles.
 Inhabité depuis 1998, il s’est fortement dégradé au fil des années. Aujourd’hui, il n’est plus à l’abandon, il a été racheté par un couple dans le but de le restaurer et de le préserver. Pour suivre toutes les actualités du château, vous pouvez consulter leur compte Instagram : @chateau_de_pont_saint_pierre."
 );
 
-insert into GALLERIE (idL, nom_categorie) values (2, 'chateaux');
-insert into GALLERIE (idL, nom_categorie) values (2, 'chateaux');
+insert into GALLERIE (idL, nom_categorie) values (2, 'Châteaux');
+insert into GALLERIE (idL, nom_categorie) values (2, 'Châteaux');
 
 insert into IMAGEGALLERIE (idG, chemin, ordreImg, cadrage) values
 (4, '/site_web/img/chateaux/douves/image1.jpeg', 1, "horizontal"),
@@ -75,25 +75,25 @@ insert into PARAGRAPHE (idG, paragraphe) values
 (5, "L’intérieur reflète l’état de l’extérieur : les planchers sont très fragilisés par le temps et presque tout l’étage est inaccessible. Un escalier subsiste également, mais également dans un très mauvais état.");
 
 insert into STRUCTURE (idL, nom_categorie, ordre_structure, types, ref) VALUES
-(2, 'chateaux', 1, 'paragraphe', 4),
-(2, 'chateaux', 2, 'galerie', 4),
-(2, 'chateaux', 3, 'paragraphe', 5),
-(2, 'chateaux', 4, 'galerie', 5);
+(2, 'Châteaux', 1, 'paragraphe', 4),
+(2, 'Châteaux', 2, 'galerie', 4),
+(2, 'Châteaux', 3, 'paragraphe', 5),
+(2, 'Châteaux', 4, 'galerie', 5);
 
 
 -- Le Château colimacon --
 insert into LIEUX (nom_categorie, slug, nom, date_explo) 
-values ("chateaux", "colimacon", "Le Château Colimaçon", "2024-07-01");
+values ("Châteaux", "colimacon", "Le Château Colimaçon", "2024-07-01");
 
 insert into DESCRIPTIFLIEUX (idL, nom_categorie, chemin_img_banniere, pays, histoire_lieux)
-values (3, "chateaux", "/site_web/img/chateaux/colimacon/image1.jpeg", "francais", 
+values (3, "Châteaux", "/site_web/img/chateaux/colimacon/image1.jpeg", "france", 
 "Ce manoir doit son surnom à son grand escalier en colimaçon fait de mosaïques. Abandonné depuis environ cinquante ans, il ne reste plus grand-chose à voir à l’intérieur. L’incendie de 2023, qui a détruit une partie de la toiture, n’a fait qu’aggraver son état déjà fragile.
 Aujourd’hui, la maison appartient à un propriétaire iranien qui ne s’en occupe plus, laissant le lieu tomber peu à peu en ruine."
 );
 
-insert into GALLERIE (idL, nom_categorie) values (3, 'chateaux');
-insert into GALLERIE (idL, nom_categorie) values (3, 'chateaux');
-insert into GALLERIE (idL, nom_categorie) values (3, 'chateaux');
+insert into GALLERIE (idL, nom_categorie) values (3, 'Châteaux');
+insert into GALLERIE (idL, nom_categorie) values (3, 'Châteaux');
+insert into GALLERIE (idL, nom_categorie) values (3, 'Châteaux');
 
 insert into IMAGEGALLERIE (idG, chemin, ordreImg, cadrage) values 
 (6, '/site_web/img/chateaux/colimacon/image1.jpeg', 1, "horizontal"),
@@ -119,20 +119,20 @@ insert into PARAGRAPHE (idG, paragraphe) values
 (8, "Place maintenant à la partie principale du manoir : son escalier en colimaçon. Il traverse tous les étages et mène jusqu’à la terrasse sur le toit. Malheureusement, il est recouvert de nombreux tags.");
 
 insert into STRUCTURE (idL, nom_categorie, ordre_structure, types, ref) VALUES
-(3, 'chateaux', 1, 'paragraphe', 6),
-(3, 'chateaux', 2, 'galerie', 6),
-(3, 'chateaux', 3, 'paragraphe', 7),
-(3, 'chateaux', 4, 'galerie', 7),
-(3, 'chateaux', 5, 'paragraphe', 8),
-(3, 'chateaux', 6, 'galerie', 8);
+(3, 'Châteaux', 1, 'paragraphe', 6),
+(3, 'Châteaux', 2, 'galerie', 6),
+(3, 'Châteaux', 3, 'paragraphe', 7),
+(3, 'Châteaux', 4, 'galerie', 7),
+(3, 'Châteaux', 5, 'paragraphe', 8),
+(3, 'Châteaux', 6, 'galerie', 8);
 
 
 -- Le Château de Fruminet --
 -- insert into LIEUX (nom_categorie, slug, nom, date_explo) 
--- values ("chateaux", "fruminet", "Le Château de Fruminet", "2024-07-01");
+-- values ("Châteaux", "fruminet", "Le Château de Fruminet", "2024-07-01");
 
 -- insert into DESCRIPTIFLIEUX (idL, nom_categorie, chemin_img_banniere, pays, histoire_lieux)
--- values (4, "chateaux", "/site_web/img/chateaux/fruminet/image1.jpeg", "francais",
+-- values (4, "Châteaux", "/site_web/img/Châteaux/fruminet/image1.jpeg", "france",
 -- "Édifié dans les années 1860, ce château de style Second Empire laisse encore deviner sa splendeur 
 -- passée, malgré son état de délabrement avancé. Au fil du temps, il connut plusieurs vies : il devint 
 -- d’abord un parc d’artillerie pour l’armée française, puis servit de prison durant les deux guerres 
@@ -144,22 +144,22 @@ insert into STRUCTURE (idL, nom_categorie, ordre_structure, types, ref) VALUES
 -- décorent encore les murs."
 -- );
 
--- insert into GALLERIE (idL, nom_categorie) values (4, 'chateaux');
--- insert into GALLERIE (idL, nom_categorie) values (4, 'chateaux');
--- insert into GALLERIE (idL, nom_categorie) values (4, 'chateaux');
+-- insert into GALLERIE (idL, nom_categorie) values (4, 'Châteaux');
+-- insert into GALLERIE (idL, nom_categorie) values (4, 'Châteaux');
+-- insert into GALLERIE (idL, nom_categorie) values (4, 'Châteaux');
 
 -- insert into IMAGEGALLERIE (idG, chemin, ordreImg, cadrage) values
--- (9, '/site_web/img/chateaux/fruminet/image1.jpeg', 1, "horizontal"),
--- (9, '/site_web/img/chateaux/fruminet/image2.jpeg', 2, "vertical"),
--- (9, '/site_web/img/chateaux/fruminet/image3.jpeg', 3, "horizontal"),
+-- (9, '/site_web/img/Châteaux/fruminet/image1.jpeg', 1, "horizontal"),
+-- (9, '/site_web/img/Châteaux/fruminet/image2.jpeg', 2, "vertical"),
+-- (9, '/site_web/img/Châteaux/fruminet/image3.jpeg', 3, "horizontal"),
 
--- (10, '/site_web/img/chateaux/fruminet/image4.jpeg', 1, "vertical"),
--- (10, '/site_web/img/chateaux/fruminet/image5.jpeg', 2, "horizontal"),
--- (10, '/site_web/img/chateaux/fruminet/image6.jpeg', 3, "horizontal"),
+-- (10, '/site_web/img/Châteaux/fruminet/image4.jpeg', 1, "vertical"),
+-- (10, '/site_web/img/Châteaux/fruminet/image5.jpeg', 2, "horizontal"),
+-- (10, '/site_web/img/Châteaux/fruminet/image6.jpeg', 3, "horizontal"),
 
--- (11, '/site_web/img/chateaux/fruminet/image7.jpeg', 1, "horizontal"),
--- (11, '/site_web/img/chateaux/fruminet/image8.jpeg', 2, "horizontal"),
--- (11, '/site_web/img/chateaux/fruminet/image9.jpeg', 3, "vertical");
+-- (11, '/site_web/img/Châteaux/fruminet/image7.jpeg', 1, "horizontal"),
+-- (11, '/site_web/img/Châteaux/fruminet/image8.jpeg', 2, "horizontal"),
+-- (11, '/site_web/img/Châteaux/fruminet/image9.jpeg', 3, "vertical");
 
 -- insert into PARAGRAPHE (idG, paragraphe) values
 -- (9, "Situé dans une petite forêt en bordure de ville, le squelette de l’édifice est désormais 
@@ -174,9 +174,9 @@ insert into STRUCTURE (idL, nom_categorie, ordre_structure, types, ref) VALUES
 -- );
 
 -- insert into STRUCTURE (idL, nom_categorie, ordre_structure, types, ref) VALUES
--- (4, 'chateaux', 1, 'paragraphe', 9),
--- (4, 'chateaux', 2, 'galerie', 9),
--- (4, 'chateaux', 3, 'paragraphe', 10),
--- (4, 'chateaux', 4, 'galerie', 10),
--- (4, 'chateaux', 5, 'paragraphe', 11),
--- (4, 'chateaux', 6, 'galerie', 11);
+-- (4, 'Châteaux', 1, 'paragraphe', 9),
+-- (4, 'Châteaux', 2, 'galerie', 9),
+-- (4, 'Châteaux', 3, 'paragraphe', 10),
+-- (4, 'Châteaux', 4, 'galerie', 10),
+-- (4, 'Châteaux', 5, 'paragraphe', 11),
+-- (4, 'Châteaux', 6, 'galerie', 11);

@@ -163,11 +163,13 @@ body {
 
 .photo_acc article div:hover {
     background: rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
 }
 
 .photo_acc article div {
     border-radius: 2em;
     border: 0.09em solid white;
+    transition: 0.3s;
 }
 
 .parent {
@@ -222,8 +224,10 @@ body {
 .explos_recentes_photos article a div {
     border-radius: 2em;
     border: 0.09em solid white;
+    transition: 0.3s;
 }
 
 .explos_recentes_photos article a div:hover {
     background: rgba(0, 0, 0, 0.4);
+    transform: scale(1.05);
 }

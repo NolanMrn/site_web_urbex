@@ -27,32 +27,41 @@ $AllAnnees = getAllAnnees($conn);
         <div class="container">
             <section class="block">
                 <nav class="filtre">
-                    <article>
+                    <article data-filtre="categorie">
                         <p>Filtré par catégorie :</p>
                         <ul>
                             <?php
                             while ($cat = $categories->fetch_assoc()) {
-                                printf('<li><button>%s</button></li>', htmlspecialchars($cat['nom_categorie']));
+                                printf('<li><button class="btn_filtre" id="%s">%s</button></li>', 
+                                    htmlspecialchars($cat['nom_categorie']),
+                                    htmlspecialchars($cat['nom_categorie'])
+                                );
                             }
                             ?>
                         </ul>
                     </article>
-                    <article>
+                    <article  data-filtre="pays">
                         <p>Filtré par pays :</p>
                         <ul>
                             <?php
                                 while ($p = $allPays->fetch_assoc()) {      
-                                    printf('<li><button>%s</button></li>', htmlspecialchars($p['pays']));
+                                    printf('<li><button class="btn_filtre" id="%s">%s</button></li>',
+                                        htmlspecialchars($p['pays']),
+                                        htmlspecialchars($p['pays'])
+                                    );
                                 }
                                 ?>
                         </ul>
                     </article>
-                    <article>
+                    <article  data-filtre="annee">
                         <p>Filtré par années :</p>
                         <ul>
                             <?php
                             foreach ($AllAnnees as $a) {
-                                printf('<li><button>%s</button></li>', htmlspecialchars($a));
+                                printf('<li><button class="btn_filtre" id="%s">%s</button></li>',
+                                    htmlspecialchars($a),
+                                    htmlspecialchars($a),
+                                );
                             }
                             ?>
                         </ul>
@@ -63,6 +72,10 @@ $AllAnnees = getAllAnnees($conn);
                     while ($lieu = $lieux->fetch_assoc()) {
                         $categorie = htmlspecialchars($lieu["nom_categorie"]);
                         $cheminImg = htmlspecialchars(getImageBanniere($conn, $lieu["idL"], $categorie));
+                        $cheminPhysique = $_SERVER['DOCUMENT_ROOT'] . $cheminImg;
+                        if (!file_exists($cheminPhysique)) {
+                            $cheminImg = "/site_web/img/accueil/image_defaut.png";
+                        }
                         $pays = htmlspecialchars(getPays($conn, $lieu["idL"], $categorie));
                         $nom = htmlspecialchars($lieu["nom"]);
                         $annee = htmlspecialchars(substr($lieu["date_explo"], 0, 4));
@@ -71,7 +84,7 @@ $AllAnnees = getAllAnnees($conn);
                         $lienUrl = htmlspecialchars(
                             "/site_web/php/lieu_indiv.php?slug={$slug}&categorie={$categorie}");
                         
-                        echo "<article>
+                        echo "<article class=\"unLieu\" data-categorie=\"{$categorie}\" data-pays=\"{$pays}\" data-annee=\"{$annee}\">
                                 <img src=\"{$cheminImg}\" alt=\"\">
                                 <div class=\"content\">
                                     <article>
@@ -107,5 +120,6 @@ $AllAnnees = getAllAnnees($conn);
             </section>
         </div>
     </main>
+    <script src="/site_web/js/galerie.js"></script>
 </body>
 </html>
