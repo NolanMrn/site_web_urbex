@@ -44,13 +44,13 @@ $AllAnnees = getAllAnnees($conn);
                         <p>Filtré par pays :</p>
                         <ul>
                             <?php
-                                while ($p = $allPays->fetch_assoc()) {      
-                                    printf('<li><button class="btn_filtre" id="%s">%s</button></li>',
-                                        htmlspecialchars($p['pays']),
-                                        htmlspecialchars($p['pays'])
-                                    );
-                                }
-                                ?>
+                            while ($p = $allPays->fetch_assoc()) {      
+                                printf('<li><button class="btn_filtre" id="%s">%s</button></li>',
+                                    htmlspecialchars($p['pays']),
+                                    htmlspecialchars($p['pays'])
+                                );
+                            }
+                            ?>
                         </ul>
                     </article>
                     <article  data-filtre="annee">
@@ -83,28 +83,29 @@ $AllAnnees = getAllAnnees($conn);
                         $slug = htmlspecialchars($lieu["slug"]);
                         $lienUrl = htmlspecialchars(
                             "/site_web/php/lieu_indiv.php?slug={$slug}&categorie={$categorie}");
-                        
-                        echo "<article class=\"unLieu\" data-categorie=\"{$categorie}\" data-pays=\"{$pays}\" data-annee=\"{$annee}\">
-                                <img src=\"{$cheminImg}\" alt=\"\">
-                                <div class=\"content\">
-                                    <article>
-                                        <div>
-                                            <hr class=\"trait-blanc\">
-                                            <h2>{$nom}</h2>
-                                            <hr class=\"trait-blanc\">
-                                        </div>
-                                        <div>
-                                            <img src=\"/site_web/img/accueil/drapeau_{$pays}.png\" alt=\"\">
-                                            <p>{$moisChiffre}/{$annee}</p>
-                                        </div>
-                                    </article>
-                                    <a href=\"{$lienUrl}\">
-                                        <div>
-                                            <p>Découvrir</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </article>";
+                        ?>
+                        <article class="unLieu" data-categorie="<?php echo $categorie ?>" data-pays="<?php echo $pays ?>" data-annee="<?php echo $annee ?>">
+                            <img src="<?php echo $cheminImg ?>" alt="">
+                            <div class="content">
+                                <article>
+                                    <div>
+                                        <hr class="trait-blanc">
+                                        <h2><?php echo $nom ?></h2>
+                                        <hr class="trait-blanc">
+                                    </div>
+                                    <div>
+                                        <img src="/site_web/img/accueil/drapeau_<?php echo $pays ?>.png" alt="">
+                                        <p><?php echo $moisChiffre ?>/<?php echo $annee ?></p>
+                                    </div>
+                                </article>
+                                <a href="<?php echo $lienUrl ?>">
+                                    <div>
+                                        <p>Découvrir</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </article>
+                        <?php
                     }
                     $reste = $nbLieux % 3;
                     if ($reste == 0) {

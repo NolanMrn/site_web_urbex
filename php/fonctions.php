@@ -146,6 +146,15 @@ function getAllLieux($conn){
     return $lieux;
 }
 
+function getTroisDernierslLieux($conn){
+    $statement = $conn->prepare(
+        'SELECT idL, slug, nom, date_explo, nom_categorie FROM LIEUX ORDER BY date_explo DESC LIMIT 3;'
+    );
+    $statement->execute();
+    $lieux = $statement->get_result();
+    return $lieux;
+}
+
 function getImageBanniere($conn, $idL, $categorie){
     $statement = $conn->prepare(
         'SELECT chemin_img_banniere FROM DESCRIPTIFLIEUX WHERE idL = ? AND nom_categorie = ?'
