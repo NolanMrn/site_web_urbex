@@ -80,5 +80,6 @@ $histoireLieux = getHistoireLieux($conn, $lieu["idL"], $lieu["nom_categorie"]);
             </section>
         </div>
     </main>
+    <?php include 'footer.php'; ?>
 </body>
 </html>

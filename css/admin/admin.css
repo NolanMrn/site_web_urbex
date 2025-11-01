@@ -1,6 +1,9 @@
 /*positionnement*/
 body {
     overflow-y: scroll;
+    background-color: var(--couleur-fond-principal);
+    display: flex;
+    flex-direction: column;
 }
 
 main {
@@ -9,6 +12,7 @@ main {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
+    flex: 1;
 }
 
 .container {

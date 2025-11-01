@@ -136,5 +136,6 @@ $nbLieux = $troisDerniersLieux->num_rows;
                 </div>
             </div>
         </main>
+        <?php include 'footer.php'; ?>
     </body>
 </html>

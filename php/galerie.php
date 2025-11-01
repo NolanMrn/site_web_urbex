@@ -118,6 +118,7 @@ $AllAnnees = getAllAnnees($conn);
             </section>
         </div>
     </main>
+    <?php include 'footer.php'; ?>
     <script src="/site_web/js/galerie.js"></script>
 </body>
 </html>
