@@ -6,7 +6,7 @@
   --couleur-blanc: #FFFFFF;
   --couleur-noir: #000000;
 
-  --border-radius: 0.7em;
+  --border-radius-bouton: 0.7em;
   --maw-width-container: 83vw;
 }
 
@@ -59,14 +59,16 @@ body {
     width: auto;
     padding: 0.1em 2em 0.3em 2em;
     margin-top: 0.5em;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-bouton);
     border: 0.04em solid var(--couleur-noir);
     background-color: var(--couleur-boutton);
     box-shadow: 5px 5px 20px 2px var(--couleur-noir);
     transition: 0.3s;
+    will-change: transform;
 }
 
-.photo_acc article div:hover {
+.photo_acc article div:hover,
+.explos_recentes_photos article a div:hover {
     transform: scale(1.05);
 }
 
@@ -79,64 +81,65 @@ body {
 }
 
 .container {
-    max-width: var(--maw-width-container);
+    max-width: 130em;
+    width: 100%;    
     box-sizing: border-box;
     background-color: #222222;
     background-color: var(--couleur-fond-principal);
+    display: flex;
+    flex-direction: column;
+    padding-top: 4em;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.explos_recentes {
-    margin-bottom: 4em;
+.orange {
+    color: var(--couleur-boutton);
 }
 
-.explos_recentes h1 {
-    text-align: center;
-    padding-top: 1.5em;
+.def_urbex,
+.def_site,
+.explos_recentes,
+.reseaux {
+    padding: 6em 3em;
+}
+
+.def_urbex h1,
+.def_site h1,
+.explos_recentes h1,
+.reseaux h1 {
+    font-size: 3.7em;
+    font-family: 'Anton', sans-serif;
+    color: var(--couleur-texte-principal);
+    margin-bottom: 0.7em;
+}
+
+.def_urbex p,
+.def_site p {
+    font-size: 1.7em;
+    color: var(--couleur-texte-principal);
+    font-weight: 100;
+    margin-top: 0.6em;
 }
 
 .explos_recentes_photos {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 4em;
+    gap: 7em;
 }
 
 .explos_recentes_photos>article {
     flex-basis: 25%;
     flex-grow: 1;
-    margin: 2.7em;
     padding: 1em;
     position: relative;
     overflow: hidden;
+    background-color: var(--couleur-blanc);
 }
 
 .explos_recentes_photos article h2 {
-    margin: 0 0.8em 0 0.8em;
+    margin: 0 0.8em;
+    font-family: 'Antonio', sans-serif;
+    font-size: 1.7em;
+    color: var(--couleur-texte-principal);
 }
 
 .explos_recentes_photos>article>img {
@@ -161,11 +164,14 @@ body {
 .trait-blanc {
     flex-grow: 1;
     height: 2px;
+    border: none;
+    background-color: var(--couleur-texte-principal);
 }
 
 .explos_recentes_photos>article article {
     width: 28em;
     padding-top: 2em;
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .explos_recentes_photos>article article div {
@@ -185,71 +191,44 @@ body {
 
 .explos_recentes_photos>article article div p{
     margin-right: 0.4em;
+    color: var(--couleur-texte-principal);
+    font-family: 'Antonio', sans-serif;
+    font-size: 1.2em;
 }
 
 .explos_recentes_photos>article a {
     display: inline-block;
     margin: 0 auto;
+    text-decoration: none;
+    color: var(--couleur-texte-principal);
+    font-size: 1.4em;
+    font-family: 'Antonio', sans-serif;
 }
 
 .explos_recentes_photos>article a div {
     padding: 0.2em 1em 0.4em 1em;
     margin-top: 1em;
-}
-
-/*style*/
-
-
-
-.explos_recentes h1 {
-    color: white;
-    font-size: 4em;
-    font-family: 'Anton', sans-serif;
-}
-
-.explos_recentes_photos>article {
-    background-color: white;
-}
-
-.content {
-    color: white;
-}
-
-.trait-blanc {
-    border: none;
-    background-color: white;
-}
-
-.explos_recentes_photos article article {
-    background: rgba(0, 0, 0, 0.4);
-}
-
-.explos_recentes_photos article h2 {
-    font-family: 'Antonio', sans-serif;
-    font-size: 1.7em;
-}
-
-.explos_recentes_photos article article p {
-    color: white;
-    font-family: 'Antonio', sans-serif;
-    font-size: 1.2em;
-}
-
-.explos_recentes_photos article a {
-    text-decoration: none;
-    color: white;
-    font-size: 1.4em;
-    font-family: 'Antonio', sans-serif;
-}
-
-.explos_recentes_photos article a div {
-    border-radius: 2em;
-    border: 0.09em solid white;
     transition: 0.3s;
-    background: rgba(0, 0, 0, 0.07);
+    border-radius: var(--border-radius-bouton);
+    border: 0.04em solid var(--couleur-noir);
+    background-color: var(--couleur-boutton);
+    box-shadow: 5px 5px 20px 2px var(--couleur-noir);
+    will-change: transform;
 }
 
-.explos_recentes_photos article a div:hover {
-    background: rgba(0, 0, 0, 0.4);
-    transform: scale(1.05);
+.reseaux section {
+    margin-bottom: 4em;
+}
+
+.reseaux article {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+}
+
+.reseaux a {
+    text-decoration: none;
+    color: var(--couleur-texte-principal);
+    font-size: 2.5em;
 }

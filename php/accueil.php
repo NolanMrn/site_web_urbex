@@ -36,31 +36,31 @@ $nbLieux = $troisDerniersLieux->num_rows;
             <div class="parent">
                 <div class="container">
                     <section class="def_urbex">
-                        <h1>L'urbex qu'est ce que c'est ?</h1>
-                        <p>L'Urbex, abréviation de l'anglais « urban exploration » (exploration urbaine), est une
+                        <h1>L'<span class="orange">urbex</span> qu'est ce que c'est ?</h1>
+                        <p>L'urbex, abréviation de l'anglais « urban exploration » (exploration urbaine), est une
                             pratique qui consiste à visiter et à documenter des lieux construits et abandonnés par
-                            l’homme.</p>
-                        <p>Ces sites peuvent être des friches industrielles, d’anciennes usines, des entrepôts, mais
-                            aussi des châteaux, des villas ou des hôpitaux désaffectés.</p>
+                            l’homme. Ces sites peuvent être des friches industrielles, d’anciennes usines, des entrepôts,
+                            mais aussi des châteaux, des villas ou des hôpitaux désaffectés.</p>
                         <p>Les explorateurs urbains respectent un code strict, dont l'une des règles fondamentales est
                             de ne jamais révéler la localisation exacte des lieux visités afin de les préserver de la
                             dégradation et du pillage.</p>
                         <p>Pour moi, l'exploration est un moyen de faire perdurer l'histoire de ces lieux, de ne pas les
                             oublier, et de les immortaliser grâce à la photographie.</p>
                     </section>
-
-
-
-
-
-
-
+                    <section class="def_site">
+                        <h1>Un lieu d'<span class="orange">images</span>, pas d'adresses</h1>
+                        <p>Ce site a pour but de vous partager mes clichés capturées au cours de mes explorations. C'est une 
+                            vitrine photographique. Nous nous engageons fermement à respecter l'éthique Urbex : nous ne
+                            partageons aucune adresse et condamnons toute dégradation.</p>
+                        <p>Notre unique mission est de documenter l'histoire de ces lieux, sans jamais compromettre leur intégrité
+                            ou leur tranquillité.</p>
+                    </section>
                     <section class="explos_recentes">
                         <?php
                         if ($nbLieux == 0) {
-                            printf("<h1>%s</h1>", "Aucune exploration récente");
+                            printf("<h1>Aucune exploration récente</h1>");
                         } else {
-                            printf("<h1>%s</h1>", "Mes dernières explorations");
+                            printf("<h1>Mes dernières <span class='orange'>explorations</span></h1>");
                         }
                         ?>
                         <section class="explos_recentes_photos">
@@ -113,6 +113,24 @@ $nbLieux = $troisDerniersLieux->num_rows;
                                 printf("<article style=\"background-color: #222222;\"></article>");
                             }
                             ?>
+                        </section>
+                    </section>
+                    <section class="reseaux">
+                        <section>
+                            <h1>Suivez moi sur <span class="orange">Instagram</span></h1>
+                            <article>
+                                <img src="/site_web/img/accueil/logo_instagram.png" alt="logo instagram">
+                                <a href="https://www.instagram.com/exploratio_nln/">@Exploratio_nln</a>
+                            </article>
+                        </section>
+                        <section>
+                            <h1>Pour égalemment suivre mes <span class="orange">partenaires</span></h1>
+                            <article>
+                                <img src="/site_web/img/accueil/logo_instagram.png" alt="logo instagram">
+                                <a href="https://www.instagram.com/pikachurbex/">@pikachurbex</a>
+                                <a href="https://www.instagram.com/grendnez_xploration/">@grendnez_xploration</a>
+                                <a href="https://www.instagram.com/tim_explo_urbain/">@tim_explo_urbain</a>
+                            </article>
                         </section>
                     </section>
                 </div>
