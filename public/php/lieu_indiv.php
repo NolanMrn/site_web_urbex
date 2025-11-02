@@ -1,6 +1,7 @@
 <?php
-require_once 'connexion_bd.php';
+require_once __DIR__ . '/../../connexion_bd.php';
 require_once 'fonctions.php';
+
 
 
 if (isset($_GET['slug']) && (isset($_GET['categorie']))) {

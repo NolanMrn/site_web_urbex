@@ -1,6 +1,7 @@
 <?php
-include 'connexion_bd.php';
-include 'fonctions.php';
+require_once __DIR__ . '/../../connexion_bd.php';
+require_once 'fonctions.php';
+
 
 $lieux = getAllLieux($conn);
 $nbLieux = $lieux->num_rows;
