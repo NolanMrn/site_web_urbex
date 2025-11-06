@@ -26,7 +26,7 @@
                             <a href="">Modifier un lieu</a>
                         </li>
                         <li>
-                            <a href="">Supprimer un lieu</a>
+                            <a href="/site_web/public/php/admin/SupprimerLieuAdmin.php">Supprimer un lieu</a>
                         </li>
                     </ul>
                 </article>

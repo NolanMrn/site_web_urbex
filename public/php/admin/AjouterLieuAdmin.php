@@ -28,6 +28,7 @@ $nbPhotos = 0;
                 <form method="POST" action="save_lieu.php" onsubmit="return validerFormulaire()">
                     <input type="hidden" name="nbSections" id="nbSections" value="<?php echo $nbSections; ?>">
                     <input type="hidden" name="nbPhotos" id="nbPhotos" value="<?php echo $nbPhotos; ?>">
+                    <input type="hidden" name="action" value="ajouter">
                     <div class="form-group">
                         <label for="nom">Nom :</label>
                         <input type="text" id="nom" name="nom" required>
@@ -43,7 +44,7 @@ $nbPhotos = 0;
                             <?php
                             while ($categorie = $categories->fetch_assoc()) {
                                 printf(
-                                    '<option value=%s>%s</option>',
+                                    '<option value="%s">%s</option>',
                                     htmlspecialchars($categorie['nom_categorie']),
                                     htmlspecialchars($categorie['nom_categorie'])
                                 );
@@ -63,7 +64,7 @@ $nbPhotos = 0;
                             <?php
                             while ($unPays = $pays->fetch_assoc()) {
                                 printf(
-                                    '<option value=%s>%s</option>',
+                                    '<option value="%s">%s</option>',
                                     htmlspecialchars($unPays['pays']),
                                     htmlspecialchars($unPays['pays'])
                                 );

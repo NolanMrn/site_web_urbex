@@ -4,6 +4,7 @@ body {
     background-color: var(--couleur-fond-principal);
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 main {
@@ -11,14 +12,12 @@ main {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    min-height: 100vh;
     flex: 1;
 }
 
 .container {
     max-width: 130em;
     width: 100%;
-    min-height: 100vh;
     box-sizing: border-box;
     text-align: center;
     padding-top: 12em;
@@ -29,7 +28,7 @@ main {
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
-    padding: 0 3em;
+    padding: 0 5em;
 }
 
 .orange {
@@ -44,7 +43,7 @@ main form {
     margin-top: 4em;
     row-gap: 1.5em;
     column-gap: 1em;
-    width: 65%;
+    width: 75%;
     margin-bottom: 4em;
     background-color: black;
     padding: 1.5em;

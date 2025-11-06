@@ -323,4 +323,77 @@ function ajtLieuxEntier($conn, $categorie, $slug, $nom, $date_explo, $num_bannie
 
     ajtStructure($conn,  $idL, $galleriesArray, $categorie);
 }
+
+
+
+function supprimerStructureLieu($conn, $idL, $categorie) {
+    $statement = $conn->prepare(
+        'DELETE FROM STRUCTURE WHERE idL = ? AND nom_categorie = ?'
+    );
+    $statement->bind_param("is", $idL, $categorie);
+    $statement->execute();
+}
+
+function supprimerParagrapheLieu($conn, $idG) {
+    $statement = $conn->prepare(
+        'DELETE FROM PARAGRAPHE WHERE idG = ?'
+    );
+    $statement->bind_param("i", $idG);
+    $statement->execute();
+}
+
+function supprimerImageGalerieLieu($conn, $idG) {
+    $statement = $conn->prepare(
+        'DELETE FROM IMAGEGALLERIE WHERE idG = ?'
+    );
+    $statement->bind_param("i", $idG);
+    $statement->execute();
+}
+
+function supprimerGalerieLieu($conn, $idL, $categorie) {
+    $statement = $conn->prepare(
+        'DELETE FROM GALLERIE WHERE idL = ? AND nom_categorie = ?'
+    );
+    $statement->bind_param("is", $idL, $categorie);
+    $statement->execute();
+}
+
+function supprimerDescriptifLieu($conn, $idL, $categorie) {
+    $statement = $conn->prepare(
+        'DELETE FROM DESCRIPTIFLIEUX WHERE idL = ? AND nom_categorie = ?'
+    );
+    $statement->bind_param("is", $idL, $categorie);
+    $statement->execute();
+}
+
+function supprimerLieu($conn, $idL, $categorie) {
+    $statement = $conn->prepare(
+        'DELETE FROM LIEUX WHERE idL = ? AND nom_categorie = ?'
+    );
+    $statement->bind_param("is", $idL, $categorie);
+    $statement->execute();
+    if ($statement->affected_rows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function supprimerLieuEntier($conn, $slug, $categorie) {
+    $idL = getIdL($conn, $categorie, $slug);
+
+    supprimerStructureLieu($conn, $idL, $categorie);
+
+    $galleries =  getGalleries($conn, $categorie, $idL);
+    while ($gallerie = $galleries->fetch_assoc()) {
+        supprimerParagrapheLieu($conn, $gallerie);
+        supprimerImageGalerieLieu($conn, $gallerie);
+    }
+
+    supprimerGalerieLieu($conn, $idL, $categorie);
+
+    supprimerDescriptifLieu($conn, $idL, $categorie);
+
+    return supprimerLieu($conn, $idL, $categorie);
+}
 ?>
