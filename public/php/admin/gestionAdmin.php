@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/site_web/public/css/admin/gestionAdmin.css">
+    <link rel="stylesheet" type="text/css" href="/site_web/public/css/header/header.css">
+    <title>Exploratio_nln</title>
+    <link rel="icon" type="image/PNG" href="/site_web/public/img/accueil/photo_profil.png">
+    <link href="https://fonts.googleapis.com/css2?family=Antonio&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+</head>
+<body>
+    <?php include '../header.php'; ?>
+    <main>
+        <div class="container">
+            <section>
+                <article class="titre">
+                    <h1>Bienvenue sur la page <span class="orange">Admin</span></h1>
+                </article>
+                <article class="btn">
+                    <ul>
+                        <li>
+                            <a href="/site_web/public/php/admin/AjouterLieuAdmin.php">Ajouter un lieu</a>
+                        </li>
+                        <li>
+                            <a href="">Modifier un lieu</a>
+                        </li>
+                        <li>
+                            <a href="">Supprimer un lieu</a>
+                        </li>
+                    </ul>
+                </article>
+            </section>
+        </div>
+    </main>
+    <?php include '../footer.php'; ?>
+</body>
+</html>
