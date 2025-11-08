@@ -25,7 +25,7 @@ $nbPhotos = 0;
         <div class="container" data-nbSections = "<?php echo $nbSections ?>">
             <section class="block">
                 <h1>Ajouter un <span class="orange">lieu</span></h1>
-                <form method="POST" action="save_lieu.php" onsubmit="return validerFormulaire()">
+                <form class="form_lieu visible" method="POST" action="save_lieu.php" onsubmit="return validerFormulaire()">
                     <input type="hidden" name="nbSections" id="nbSections" value="<?php echo $nbSections; ?>">
                     <input type="hidden" name="nbPhotos" id="nbPhotos" value="<?php echo $nbPhotos; ?>">
                     <input type="hidden" name="action" value="ajouter">
@@ -90,14 +90,14 @@ $nbPhotos = 0;
                         <textarea id="histoire" name="histoire" rows="6" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label></label>
+                        <div></div>
                         <div class="boutons_section">
                             <button type="button" class="btn-supprimer_section">Supprimer la dernière section</button>
                             <button type="button" class="btn-ajouter_section">Ajouter une section</button>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label></label>
+                        <div></div>
                         <button type="submit" class="btn-enregistrer">Enregistrer</button>
                     </div>
                     <script>

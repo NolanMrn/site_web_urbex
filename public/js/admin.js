@@ -76,7 +76,7 @@ btnAjouterSection.addEventListener('click', () => {
             <textarea id="paragraphe${nbSection}" name="paragraphe${nbSection}" rows="4" required></textarea>
         </div>
         <div class="form-group">
-            <label>Images :</label>
+            <p>Images :</p>
             <div class="choix-orientation">
                 <button type="button" class="btn-orientation" data-orientation="vertical">Vertical</button>
                 <button type="button" class="btn-orientation" data-orientation="horizontal">Horizontal</button>
@@ -88,7 +88,7 @@ btnAjouterSection.addEventListener('click', () => {
             <textarea id="ordre${nbSection}" name="ordre${nbSection}" class="ordre" rows="2" readonly></textarea>
         </div>
     `;
-    const form = page.querySelector('form');
+    const form = page.querySelector('.form_lieu');
     form.insertBefore(nouvelleSection, btnAjouterSection.closest('.form-group'));
     initSection(nouvelleSection, `ordre${nbSection}`);
 });
@@ -103,15 +103,15 @@ btnSupprimerSection.addEventListener('click', () => {
         if (derniereSection) {
             derniereSection.remove();
         }
-    nbSection--;
-    page.dataset.nbsections = nbSection;
-    const nbPhotosInput = document.getElementById('nbPhotos');
-    let nbPhotos = parseInt(nbPhotosInput.value, 10)
-    const derniereClef = Array.from(sections.keys()).pop();
-    const nbPhotoDerniereSection = sections.get(derniereClef).length;
-    const nbPhotoApresSupp = nbPhotos - nbPhotoDerniereSection;
-    nbPhotosInput.value = nbPhotoApresSupp;
-    sections.delete(derniereClef);
+        nbSection--;
+        page.dataset.nbsections = nbSection;
+        const nbPhotosInput = document.getElementById('nbPhotos');
+        let nbPhotos = parseInt(nbPhotosInput.value, 10)
+        const derniereClef = Array.from(sections.keys()).pop();
+        const nbPhotoDerniereSection = sections.get(derniereClef).length;
+        const nbPhotoApresSupp = nbPhotos - nbPhotoDerniereSection;
+        nbPhotosInput.value = nbPhotoApresSupp;
+        sections.delete(derniereClef);
     }
 });
 

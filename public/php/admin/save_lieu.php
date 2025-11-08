@@ -52,8 +52,33 @@ switch ($action) {
 
 
     case 'modifier':
-        
-        modifLieu($conn, $slug, $categorie, $nom, $pays, $date_explo_bonne, $histoire, $num_banniere);
+        $nbSections = $_POST['nbSections'] ?? 0;
+        $idL = $_POST['idLieu'] ?? 0;
+        $categorie = $_POST['categorieLieu'] ?? '';
+        $slug = $_POST['slugLieu'] ?? '';
+        $nom = $_POST['nom'] ?? '';
+        $num_banniere = $_POST['num_banniere'] ?? '';
+        $histoire = $_POST['histoire'] ?? '';
+        $date_explo = $_POST['date_explo'] ?? '';
+        $date_explo_bonne = $date_explo . "-01";
+        $galeries = $_POST['galeriesLieu'] ?? '';
+        echo $galeries;
+        $cadrage = [];
+        $listeCadrageFinal = [];
+        $listeParagraphe = [];
+        for ($i = 0 ; $i < $nbSections ; $i++) {
+            $listeParagraphe[$i] = $_POST['paragraphe' . $i + 1] ?? '';
+            $cadrage[$i] = $_POST['ordre' . $i + 1] ?? '';
+
+            $morceauxOrdresAvecNum = explode(" / ", $cadrage[$i]);
+            foreach ($morceauxOrdresAvecNum as $m) {
+                $parts = explode(".", $m);
+                if (isset($parts[1])) {
+                    $listeCadrageFinal[$i][] = $parts[1];
+                }
+            }
+        }
+        updateLieuEntier($conn, $idL, $categorie, $nom, $date_explo_bonne, $num_banniere, $histoire, $slug, $nbSections, $listeCadrageFinal, $listeParagraphe);
         echo "Lieu modifié avec succès !";
         break;
 

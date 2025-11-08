@@ -410,4 +410,50 @@ function supprimerLieuEntier($conn, $slug, $categorie) {
 
     return supprimerLieu($conn, $idL, $categorie);
 }
+
+function updateLieu($conn, $idL, $categorie, $nom, $date_explo) {
+    $statement = $conn->prepare(
+        'UPDATE LIEUX SET nom = ?, date_explo = ? WHERE idL = ? AND nom_categorie = ? AND (nom != ? OR date_explo != ?)'
+    );
+    $statement->bind_param("ssisss", $nom, $date_explo, $idL, $categorie, $nom, $date_explo);
+    $statement->execute();
+}
+
+function updateDescriptifLieux($conn, $idL, $categorie, $NumCheminImgBanniere, $histoire, $slug) {
+    $chemin = "/site_web/public/img/" . nettoyerTexte($categorie) . "/" . $slug . "/image" . $NumCheminImgBanniere . ".jpeg";
+    $statement = $conn->prepare(
+        'UPDATE DESCRIPTIFLIEUX SET chemin_img_banniere = ?, histoire_lieux = ? WHERE idL = ? AND nom_categorie = ? AND (chemin_img_banniere != ? OR histoire_lieux != ?)'
+    );
+    $statement->bind_param("ssisss", $chemin, $histoire, $idL, $categorie, $chemin, $histoire);
+    $statement->execute();
+}
+
+function updateLieuEntier($conn, $idL, $categorie, $nom, $date_explo, $NumCheminImgBanniere, $histoire, $slug, $nbSections, $listeCadrageFinal, $listeParagrapheFinal) {
+    updateLieu($conn, $idL, $categorie, $nom, $date_explo, $slug);
+
+    updateDescriptifLieux($conn, $idL, $categorie, $NumCheminImgBanniere, $histoire, $slug);
+
+    supprimerStructureLieu($conn, $idL, $categorie);
+
+    $oldGaleries =  getGalleries($conn, $categorie, $idL);
+    while ($galerie = $oldGaleries->fetch_assoc()) {
+        supprimerParagrapheLieu($conn, $galerie['idG']);
+        supprimerImageGalerieLieu($conn, $galerie['idG']);
+    }
+
+    supprimerGalerieLieu($conn, $idL, $categorie);
+
+    ajtGallerie($conn, $idL, $categorie, $nbSections);
+    $newGalleries = getGalleries($conn, $categorie, $idL);
+    $galleriesArray = [];
+    while ($g = $newGalleries->fetch_assoc()) {
+        $galleriesArray[] = $g;
+    }
+
+    ajtImageGallerie($conn, $galleriesArray, $categorie, $slug, $listeCadrageFinal);
+
+    ajtParagraphe($conn, $galleriesArray, $listeParagrapheFinal);
+
+    ajtStructure($conn,  $idL, $galleriesArray, $categorie);
+}
 ?>

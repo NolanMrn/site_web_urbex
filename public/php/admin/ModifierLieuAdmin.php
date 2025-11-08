@@ -11,8 +11,8 @@ $nomSelectionne = null;
 $dateExploSelectionne = null;
 $numCheminBanniere = null;
 $histoireLieuSelectionne = null;
-$galeries = null;
-$nbSection = 0;
+$galeriesSelectionne = null;
+$nbSections = 0;
 
 if (isset($_POST['lieu'])) {
     list($slugSelectionne, $categorieSelectionne) = explode('|', $_POST['lieu']);
@@ -22,7 +22,18 @@ if (isset($_POST['lieu'])) {
     $dateExploSelectionne = getDateFormateInt($lieuSelectionne['date_explo']);
     $numCheminBanniere = extraireNumeroAvantExtension(getImageBanniere($conn, $idLSelectionne, $categorieSelectionne));
     $histoireLieuSelectionne = getHistoireLieux($conn, $idLSelectionne, $categorieSelectionne);
-    $galeries = getGalleries($conn, $categorieSelectionne, $idLSelectionne);
+    $galeriesSelectionne = getGalleries($conn, $categorieSelectionne, $idLSelectionne);
+}
+
+if ($galeriesSelectionne != null) {
+    $nbSections = 0;
+    $tmp = [];
+    $galeriesSelectionne->data_seek(0);
+    while ($galerie = $galeriesSelectionne->fetch_assoc()) {
+        $nbSections++;
+        $tmp[] = $galerie;
+    }
+    $galeriesSelectionne->data_seek(0);
 }
 
 ?>
@@ -65,9 +76,12 @@ if (isset($_POST['lieu'])) {
                             </select>
                         </div>
                     </form>
-                    <form method="POST" action="save_lieu.php" onsubmit="return validerFormulaire()">
+                    <form class="form_lieu <?= $lieuSelectionne ? 'visible' : '' ?>" method="POST" action="save_lieu.php" onsubmit="return validerFormulaire()">
                         <input type="hidden" name="nbSections" id="nbSections" value="<?php echo $nbSections; ?>">
                         <input type="hidden" name="nbPhotos" id="nbPhotos" value="<?php echo $nbPhotos; ?>">
+                        <input type="hidden" name="idLieu" id="idLieu" value="<?php echo $idLSelectionne; ?>">
+                        <input type="hidden" name="categorieLieu" id="categorieLieu" value="<?php echo $categorieSelectionne; ?>">
+                        <input type="hidden" name="slugLieu" id="slugLieu" value="<?php echo $slugSelectionne; ?>">
                         <input type="hidden" name="action" value="modifier">
                         <div class="form-group">
                             <label for="nom">Nom :</label>
@@ -86,16 +100,19 @@ if (isset($_POST['lieu'])) {
                             <textarea id="histoire" name="histoire" rows="6" required><?php echo htmlspecialchars($histoireLieuSelectionne)?></textarea>
                         </div>
                         <?php
-                        if ($galeries != null) {
-                            while ($galerie = $galeries->fetch_assoc()) {
+                        $allSections = [];
+                        if ($galeriesSelectionne != null) {
+                            $nbSections = 0;
+                            while ($galerie = $galeriesSelectionne->fetch_assoc()) {
                                 $idG = $galerie['idG'];
-                                $nbSection ++;
+                                $nbSections ++;
                                 $paragraphe = getParagraphe($conn, $idG);
                                 $CadragesImages = getImageGalerie($conn, $idG);
                                 $lstCadrage = [];
                                 while ($uncadrage = $CadragesImages->fetch_assoc()) {
                                     $lstCadrage[] = $uncadrage['cadrage'];
                                 }
+                                $allSections["ordre$nbSections"] = $lstCadrage;
                                 $CadragesString = '';
                                 for ($i = 0; $i < count($lstCadrage); $i++) {
                                     $CadragesString .= ($i + 1) . '.' . $lstCadrage[$i];
@@ -104,13 +121,13 @@ if (isset($_POST['lieu'])) {
                                     }
                                 }
                                 ?>
-                                <div class="section section<?php echo $nbSection ?>">
+                                <div class="section section<?php echo $nbSections ?>">
                                     <div class="form-group">
-                                        <label for="paragraphe<?php echo $nbSection ?>">Paragraphe n°<?php echo $nbSection ?> :</label>
-                                        <textarea id="paragraphe<?php echo $nbSection ?>" name="paragraphe<?php echo $nbSection ?>" rows="4" required><?php echo htmlspecialchars($paragraphe)?></textarea>
+                                        <label for="paragraphe<?php echo $nbSections ?>">Paragraphe n°<?php echo $nbSections ?> :</label>
+                                        <textarea id="paragraphe<?php echo $nbSections ?>" name="paragraphe<?php echo $nbSections ?>" rows="4" required><?php echo htmlspecialchars($paragraphe)?></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label>Images :</label>
+                                        <p>Images :</p>
                                         <div class="choix-orientation">
                                             <button type="button" class="btn-orientation" data-orientation="vertical">Vertical</button>
                                             <button type="button" class="btn-orientation" data-orientation="horizontal">Horizontal</button>
@@ -118,50 +135,30 @@ if (isset($_POST['lieu'])) {
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="ordre<?php echo $nbSection ?>">Ordre :</label>
-                                        <textarea id="ordre<?php echo $nbSection ?>" name="ordre<?php echo $nbSection ?>" class="ordre" rows="2" readonly><?php echo htmlspecialchars($CadragesString)?></textarea>
+                                        <label for="ordre<?php echo $nbSections ?>">Ordre :</label>
+                                        <textarea id="ordre<?php echo $nbSections ?>" name="ordre<?php echo $nbSections ?>" class="ordre" rows="2" readonly><?php echo htmlspecialchars($CadragesString)?></textarea>
                                     </div>
                                 </div>
                                 <?php
                             }
                         }
                         ?>
-
-
                         <div class="form-group">
-                            <label></label>
+                            <div></div>
                             <div class="boutons_section">
                                 <button type="button" class="btn-supprimer_section">Supprimer la dernière section</button>
                                 <button type="button" class="btn-ajouter_section">Ajouter une section</button>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label></label>
+                            <div></div>
                             <button type="submit" class="btn-enregistrer">Modifier</button>
                         </div>
                         <script>
                             const sections = new Map();
-
                             <?php
-                            if ($galeries != null) {
-                                $nbSection = 0;
-                                $galeries->data_seek(0); // pour relire depuis le début
-                                while ($galerie = $galeries->fetch_assoc()) {
-                                    $nbSection++;
-                                    $idG = $galerie['idG'];
-                                    $CadragesImages = getImageGalerie($conn, $idG);
-                                    $lstCadrage = [];
-                                    while ($uncadrage = $CadragesImages->fetch_assoc()) {
-                                        $lstCadrage[] = $uncadrage['cadrage'];
-                                    }
-                                    $CadragesString = implode(" / ", array_map(
-                                        fn($val, $i) => ($i + 1) . "." . $val,
-                                        $lstCadrage,
-                                        array_keys($lstCadrage)
-                                    ));
-                                    // On envoie le tableau JS
-                                    echo "sections.set('ordre$nbSection', " . json_encode($lstCadrage) . ");\n";
-                                }
+                            foreach ($allSections as $id => $liste) {
+                                echo "sections.set('$id', " . json_encode($liste) . ");\n";
                             }
                             ?>
                         </script>

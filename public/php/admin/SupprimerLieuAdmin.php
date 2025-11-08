@@ -43,7 +43,7 @@ $allLieux = getAllLieux($conn);
                         </select>
                     </div>
                      <div class="form-group">
-                        <label></label>
+                        <div></div>
                         <button type="submit" class="btn-enregistrer">Supprimer</button>
                     </div>
                 </form>

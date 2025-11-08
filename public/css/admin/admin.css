@@ -55,7 +55,8 @@ main form {
     display: contents;
 }
 
-.form-group label {
+.form-group label,
+.form-group p {
     text-align: right;
 }
 
@@ -106,7 +107,8 @@ main h1 {
     font-family: 'Anton', sans-serif;
 }
 
-.form-group label {
+.form-group label,
+.form-group p {
     color: var(--couleur-boutton);
     font-size: 2em;
     font-family: 'Antonio', sans-serif;
@@ -150,4 +152,12 @@ textarea {
     box-shadow: none;
     margin: 0;
     width: 100%;
+}
+
+.form_lieu {
+    display: none;
+}
+
+.form_lieu.visible {
+    display: grid;
 }
