@@ -124,20 +124,37 @@ $nbLieux = $troisDerniersLieux->num_rows;
                     </section>
                     <section class="reseaux">
                         <section>
-                            <h1>Suivez moi sur <span class="orange">Instagram</span></h1>
-                            <article>
-                                <img src="/site_web/public/img/accueil/logo_instagram.png" alt="logo instagram">
-                                <a href="https://www.instagram.com/exploratio_nln/">@Exploratio_nln</a>
-                            </article>
-                        </section>
-                        <section>
-                            <h1>Pour égalemment suivre mes <span class="orange">partenaires</span></h1>
-                            <article>
-                                <img src="/site_web/public/img/accueil/logo_instagram.png" alt="logo instagram">
-                                <a href="https://www.instagram.com/pikachurbex/">@pikachurbex</a>
-                                <a href="https://www.instagram.com/grendnez_xploration/">@grendnez_xploration</a>
-                                <a href="https://www.instagram.com/tim_explo_urbain/">@tim_explo_urbain</a>
-                            </article>
+                            <h1>Suivez-moi et mes compagnons d’aventure sur <span class="orange">Instagram</span></h1>
+                            <section class="insta">
+                                <article class="un_insta">
+                                    <img src="/site_web/public/img/accueil/photo_profil.png" alt="photo de profil">
+                                    <div>
+                                        <img src="/site_web/public/img/accueil/logo_instagram.png" alt="logo instagram">
+                                        <a href="https://www.instagram.com/exploratio_nln/">@Exploratio_nln</a>
+                                    </div>
+                                </article>
+                                <article class="un_insta">
+                                    <img src="/site_web/public/img/accueil/pikachurbex.png" alt="photo de profil">
+                                    <div>
+                                        <img src="/site_web/public/img/accueil/logo_instagram.png" alt="logo instagram">
+                                        <a href="https://www.instagram.com/pikachurbex/">@pikachurbex</a>
+                                    </div>
+                                </article>
+                                <article class="un_insta">
+                                    <img src="/site_web/public/img/accueil/grendnez.png" alt="photo de profil">
+                                    <div>
+                                        <img src="/site_web/public/img/accueil/logo_instagram.png" alt="logo instagram">
+                                        <a href="https://www.instagram.com/grendnez_xploration/">@grendnez_xploration</a>
+                                    </div>
+                                </article>
+                                <article class="un_insta">
+                                    <img src="/site_web/public/img/accueil/tim_explo.png" alt="photo de profil">
+                                    <div>
+                                        <img src="/site_web/public/img/accueil/logo_instagram.png" alt="logo instagram">
+                                        <a href="https://www.instagram.com/tim_explo_urbain/">@tim_explo_urbain</a>
+                                    </div>
+                                </article>
+                            </section>
                         </section>
                     </section>
                 </div>
