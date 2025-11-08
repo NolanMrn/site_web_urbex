@@ -1,6 +1,11 @@
 <?php
 $page_actuelle = basename($_SERVER['PHP_SELF']);
 
+$admin = false;
+if (isset($_SERVER['PHP_AUTH_USER'])) {
+    $admin = true;
+}
+
 ?>
 
 <header>
@@ -11,6 +16,13 @@ $page_actuelle = basename($_SERVER['PHP_SELF']);
             <li><a href="/site_web/public/php/accueil.php" class="<?= $page_actuelle === 'accueil.php' ? 'active' : '' ?>">Accueil</a></li>
             <li><a href="/site_web/public/php/galerie.php" class="<?= $page_actuelle === 'galerie.php' ? 'active' : '' ?>">Galerie</a></li>
             <li><a href="/site_web/public/php/contact.php" class="<?= $page_actuelle === 'contact.php' ? 'active' : '' ?>">Contact</a></li>
+            <?php 
+            if ($admin) {
+                ?>
+                <li><a href="/site_web/public/php/admin/gestionAdmin.php">Admin</a></li>
+                <?php 
+            }
+            ?>
         </ul>
     </nav>
 </header>
