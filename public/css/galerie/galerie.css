@@ -293,3 +293,9 @@ main {
 .resultat_recherche:empty {
     display: none;
 }
+
+.pagination {
+    display: inline;
+    background-color: #000000;
+    padding: 2em;
+}

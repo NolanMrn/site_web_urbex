@@ -14,6 +14,14 @@ function getLieu($conn, $slug, $categorie) {
     return $lieu;
 }
 
+function getNbLieux($conn) {
+    $statement = $conn->prepare('SELECT count(*) as nbLieux FROM LIEUX');
+    $statement->execute();
+    $result = $statement->get_result();
+    $nbLieux = $result->fetch_assoc();
+    return $nbLieux['nbLieux'];
+}
+
 function getMoisFr($numero) {
     $mois = [
         1 => 'janvier', 2 => 'février', 3 => 'mars',
@@ -156,6 +164,14 @@ function getAllLieux($conn){
     $statement->execute();
     $lieux = $statement->get_result();
     return $lieux;
+}
+
+function getAllLieuxParDouze($conn, $limite, $offset) {
+    $sql = "SELECT idL, slug, nom, date_explo, nom_categorie FROM lieux ORDER BY date_explo DESC LIMIT ? OFFSET ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $limite, $offset);
+    $stmt->execute();
+    return $stmt->get_result();
 }
 
 function getTroisDernierslLieux($conn){

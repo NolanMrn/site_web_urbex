@@ -2,9 +2,19 @@
 require_once 'connexion_bd.php';
 require_once 'fonctions.php';
 
+if (isset($_GET['page'])) {
+    $page = max(1, intval($_GET['page']));
+} else {
+    $page = 1;
+}
+$limit = 12;
+$offset = ($page - 1) * $limit;
 
-$lieux = getAllLieux($conn);
+$lieux = getAllLieuxParDouze($conn, $limit, $offset);
 $nbLieux = $lieux->num_rows;
+$nbLieuxTotal = getNbLieux($conn);
+$nbPages = ceil($nbLieuxTotal / $limit);
+
 $categories = getAllCategories($conn);
 $allPays = getAllPays($conn);
 $AllAnnees = getAllAnnees($conn);
@@ -119,6 +129,20 @@ $AllAnnees = getAllAnnees($conn);
                     }
                     ?>
                 </section>
+            </section>
+            <section class="pagination">
+                <?php
+                if($page > 1) {
+                    ?>
+                    <a href="?page=<?php echo $page - 1 ?>" class="prev">← Précédent</a>
+                    <?php
+                }
+                if($page < $nbPages) {
+                    ?>
+                    <a href="?page=<?php echo $page + 1 ?>" class="next">Suivant →</a>
+                    <?php
+                }
+                ?>
             </section>
         </div>
     </main>
