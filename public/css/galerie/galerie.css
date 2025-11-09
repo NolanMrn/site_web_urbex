@@ -135,7 +135,8 @@ main {
     list-style-type: none;
 }
 
-.filtre article button {
+.filtre article a {
+    display: inline-block;
     color: var(--couleur-texte-principal);
     text-decoration: none;
     margin: 0.2em 2em;
@@ -147,15 +148,16 @@ main {
     border-radius: 10px;
     transition: 0.3s;
     text-align: left;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Antonio', sans-serif;
 }
 
-.filtre article button:hover {
+.filtre article a:hover {
     background-color: var(--couleur-boutton);
 }
 
-.btn_filtre.active-click {
-    transform: scale(0.9);
-    transition: transform 0.2s ease;
+.filtre article a.active {
+    background-color: var(--couleur-boutton);
 }
 
 .explos_photos {
@@ -265,6 +267,10 @@ main {
     transform: scale(1.05);
 }
 
+.article_vide {
+    background-color: var(--couleur-fond-principal) !important;
+}
+
 .unLieu {
     opacity: 1;
     transform: scale(1);
@@ -295,7 +301,14 @@ main {
 }
 
 .pagination {
-    display: inline;
     background-color: #000000;
     padding: 2em;
+    margin-top: 30em;
+}
+
+.pagination a {
+    color: var(--couleur-texte-principal);
+    text-decoration: none;
+    font-size: 1.2em;
+    font-family: 'Antonio', sans-serif;
 }

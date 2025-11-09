@@ -2,6 +2,10 @@
 require_once 'connexion_bd.php';
 require_once 'fonctions.php';
 
+$anneeFiltre = isset($_GET['annee']) ? intval($_GET['annee']) : null;
+$paysFiltre = isset($_GET['pays']) ? $_GET['pays'] : null;
+$categorieFiltre = isset($_GET['categorie']) ? $_GET['categorie'] : null;
+
 if (isset($_GET['page'])) {
     $page = max(1, intval($_GET['page']));
 } else {
@@ -10,10 +14,10 @@ if (isset($_GET['page'])) {
 $limit = 12;
 $offset = ($page - 1) * $limit;
 
-$lieux = getAllLieuxParDouze($conn, $limit, $offset);
-$nbLieux = $lieux->num_rows;
-$nbLieuxTotal = getNbLieux($conn);
+$lieux = getAllLieuxParDouze($conn, $limit, $offset, $categorieFiltre, $paysFiltre, $anneeFiltre);
+$nbLieuxTotal = getNbLieux($conn, $categorieFiltre, $paysFiltre, $anneeFiltre);
 $nbPages = ceil($nbLieuxTotal / $limit);
+$nbLieux = $lieux->num_rows;
 
 $categories = getAllCategories($conn);
 $allPays = getAllPays($conn);
@@ -40,7 +44,7 @@ $AllAnnees = getAllAnnees($conn);
                 <nav class="filtre">
                     <section class="haut">
                         <p>Filtres</p>
-                        <button id="btn_croix" type="button" class="btn_croix"></button>
+                        <a href="/site_web/public/php/galerie.php" class="btn_croix"></a>
                     </section>
                     <form class="recherche">
                         <button id="btn_recherche" type="button" class="btn_recherche"></button>
@@ -51,8 +55,12 @@ $AllAnnees = getAllAnnees($conn);
                         <ul>
                             <?php
                             while ($cat = $categories->fetch_assoc()) {
-                                printf('<li><button class="btn_filtre" id="%s">%s</button></li>', 
-                                    htmlspecialchars($cat['nom_categorie']),
+                                $isActive = ($categorieFiltre === $cat['nom_categorie']) ? 'active' : '';
+                                printf('<li><a href="?categorie=%s%s%s" class="btn_filtre %s">%s</a></li>', 
+                                    urlencode($cat['nom_categorie']),
+                                    $anneeFiltre ? '&annee=' . $anneeFiltre : '',
+                                    $paysFiltre ? '&pays=' . $paysFiltre : '',
+                                    $isActive,
                                     htmlspecialchars($cat['nom_categorie'])
                                 );
                             }
@@ -64,8 +72,13 @@ $AllAnnees = getAllAnnees($conn);
                         <ul>
                             <?php
                             while ($p = $allPays->fetch_assoc()) {      
-                                printf('<li><button class="btn_filtre" id="%s">%s</button></li>',
-                                    htmlspecialchars($p['pays']),
+                                $isActive = ($paysFiltre === $p['pays']) ? 'active' : '';
+                                printf(
+                                    '<li><a href="%s&pays=%s%s" class="btn_filtre %s">%s</a></li>',
+                                    $categorieFiltre ? '?categorie=' . $categorieFiltre : '',
+                                    urlencode($p['pays']),
+                                    $anneeFiltre ? '&annee=' . $anneeFiltre : '',
+                                    $isActive,
                                     htmlspecialchars($p['pays'])
                                 );
                             }
@@ -77,9 +90,13 @@ $AllAnnees = getAllAnnees($conn);
                         <ul>
                             <?php
                             foreach ($AllAnnees as $a) {
-                                printf('<li><button class="btn_filtre" id="%s">%s</button></li>',
+                                $isActive = ((string) $anneeFiltre === $a) ? 'active' : '';
+                                printf('<li><a href="%s%s&annee=%s" class="btn_filtre %s">%s</a></li>',
+                                    $categorieFiltre ? '?categorie=' . $categorieFiltre : '',
+                                    $paysFiltre ? '&pays=' . $paysFiltre : '',
                                     htmlspecialchars($a),
-                                    htmlspecialchars($a),
+                                    $isActive,
+                                    htmlspecialchars($a)
                                 );
                             }
                             ?>
@@ -127,26 +144,38 @@ $AllAnnees = getAllAnnees($conn);
                         </article>
                         <?php
                     }
+                    $reste = $nbLieux % 3;
+                    $nbAjouter = 0;
+                    if ($reste !== 0) {
+                        $nbAjouter = 3 - $reste;
+                    }
+                    for ($i = 0; $i < $nbAjouter; $i++) {
+                        ?>
+                        <article class="article_vide"></article>
+                        <?php
+                    }
                     ?>
                 </section>
             </section>
             <section class="pagination">
                 <?php
-                if($page > 1) {
-                    ?>
-                    <a href="?page=<?php echo $page - 1 ?>" class="prev">← Précédent</a>
-                    <?php
-                }
-                if($page < $nbPages) {
-                    ?>
-                    <a href="?page=<?php echo $page + 1 ?>" class="next">Suivant →</a>
-                    <?php
-                }
+                $queryString = '';
+                if ($categorieFiltre) $queryString .= '&categorie=' . urlencode($categorieFiltre);
+                if ($paysFiltre) $queryString .= '&pays=' . urlencode($paysFiltre);
+                if ($anneeFiltre) $queryString .= '&annee=' . intval($anneeFiltre);
                 ?>
+                <?php if ($page > 1): ?>
+                    <a href="?page=<?php echo $page - 1 . $queryString; ?>" class="prev">← Précédent</a>
+                <?php endif; ?>
+
+                <span>Page <?php echo $page; ?> / <?php echo $nbPages; ?></span>
+
+                <?php if ($page < $nbPages): ?>
+                    <a href="?page=<?php echo $page + 1 . $queryString; ?>" class="next">Suivant →</a>
+                <?php endif; ?>
             </section>
         </div>
     </main>
     <?php include 'footer.php'; ?>
-    <script src="/site_web/public/js/galerie.js"></script>
 </body>
 </html>

@@ -14,12 +14,33 @@ function getLieu($conn, $slug, $categorie) {
     return $lieu;
 }
 
-function getNbLieux($conn) {
-    $statement = $conn->prepare('SELECT count(*) as nbLieux FROM LIEUX');
+function getNbLieux($conn, $categorie = null, $pays = null, $annee = null) {
+    $sql = "SELECT COUNT(*) AS total FROM LIEUX NATURAL JOIN DESCRIPTIFLIEUX WHERE 1=1";
+    $params = [];
+    $types = "";
+    if ($categorie) {
+        $sql .= " AND nom_categorie = ?";
+        $params[] = $categorie;
+        $types .= "s";
+    }
+    if ($pays) {
+        $sql .= " AND pays = ?";
+        $params[] = $pays;
+        $types .= "s";
+    }
+    if ($annee) {
+        $sql .= " AND YEAR(date_explo) = ?";
+        $params[] = $annee;
+        $types .= "i";
+    }
+    $statement = $conn->prepare($sql);
+    if (!empty($params)) {
+        $statement->bind_param($types, ...$params);
+    }
     $statement->execute();
     $result = $statement->get_result();
-    $nbLieux = $result->fetch_assoc();
-    return $nbLieux['nbLieux'];
+    $row = $result->fetch_assoc();
+    return $row['total'];
 }
 
 function getMoisFr($numero) {
@@ -166,12 +187,34 @@ function getAllLieux($conn){
     return $lieux;
 }
 
-function getAllLieuxParDouze($conn, $limite, $offset) {
-    $sql = "SELECT idL, slug, nom, date_explo, nom_categorie FROM lieux ORDER BY date_explo DESC LIMIT ? OFFSET ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $limite, $offset);
-    $stmt->execute();
-    return $stmt->get_result();
+function getAllLieuxParDouze($conn, $limit, $offset, $categorie = null, $pays = null, $annee = null) {
+    $sql = "SELECT idL, slug, nom, date_explo, nom_categorie, pays FROM LIEUX NATURAL JOIN DESCRIPTIFLIEUX WHERE 1=1";
+    $params = [];
+    $types = "";
+    if ($categorie) {
+        $sql .= " AND nom_categorie = ?";
+        $params[] = $categorie;
+        $types .= "s";
+    }
+    if ($pays) {
+        $sql .= " AND pays = ?";
+        $params[] = $pays;
+        $types .= "s";
+    }
+    if ($annee) {
+        $sql .= " AND YEAR(date_explo) = ?";
+        $params[] = $annee;
+        $types .= "i";
+    }
+    $sql .= " ORDER BY date_explo DESC LIMIT ? OFFSET ?";
+    $params[] = $limit;
+    $params[] = $offset;
+    $types .= "ii";
+
+    $statement = $conn->prepare($sql);
+    $statement->bind_param($types, ...$params);
+    $statement->execute();
+    return $statement->get_result();
 }
 
 function getTroisDernierslLieux($conn){
