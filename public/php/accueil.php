@@ -134,14 +134,14 @@ $nbLieux = $troisDerniersLieux->num_rows;
                                     </div>
                                 </article>
                                 <article class="un_insta">
-                                    <img src="/site_web/public/img/accueil/pikachurbex.png" alt="photo de profil">
+                                    <img src="/site_web/public/img/accueil/pikachurbex.jpeg" alt="photo de profil">
                                     <div>
                                         <img src="/site_web/public/img/accueil/logo_instagram.png" alt="logo instagram">
                                         <a href="https://www.instagram.com/pikachurbex/">@pikachurbex</a>
                                     </div>
                                 </article>
                                 <article class="un_insta">
-                                    <img src="/site_web/public/img/accueil/grendnez.png" alt="photo de profil">
+                                    <img src="/site_web/public/img/accueil/grendnez.jpeg" alt="photo de profil">
                                     <div>
                                         <img src="/site_web/public/img/accueil/logo_instagram.png" alt="logo instagram">
                                         <a href="https://www.instagram.com/grendnez_xploration/">@grendnez_xploration</a>

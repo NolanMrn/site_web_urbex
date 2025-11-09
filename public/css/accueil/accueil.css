@@ -282,11 +282,13 @@ main {
 .un_insta img {
     width: 18em;
     height: auto;
+    border-radius: 100%;
 }
 
 .un_insta div img {
     width: 4em;
     height: auto;
+    border-radius: 0;
 }
 
 .insta a {
