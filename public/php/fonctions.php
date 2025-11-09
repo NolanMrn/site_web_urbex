@@ -449,6 +449,25 @@ function supprimerDescriptifLieu($conn, $idL, $categorie) {
     $statement->execute();
 }
 
+function getNbLieuxCategorie ($conn, $categorie) {
+    $statement = $conn->prepare(
+        'SELECT count(*) AS nbLieux FROM LIEUX WHERE nom_categorie = ?'
+    );
+    $statement->bind_param("s", $categorie);
+    $statement->execute();
+    $result = $statement->get_result();
+    $nbLieux = $result->fetch_assoc(); 
+    return $nbLieux['nbLieux'] ?? 0;
+}
+
+function supprimerCategorie($conn, $categorie) {
+    $statement = $conn->prepare(
+        'DELETE FROM CATEGORIE WHERE nom_categorie = ?'
+    );
+    $statement->bind_param("s", $categorie);
+    $statement->execute();
+}
+
 function supprimerLieu($conn, $idL, $categorie) {
     $statement = $conn->prepare(
         'DELETE FROM LIEUX WHERE idL = ? AND nom_categorie = ?'
@@ -456,6 +475,9 @@ function supprimerLieu($conn, $idL, $categorie) {
     $statement->bind_param("is", $idL, $categorie);
     $statement->execute();
     if ($statement->affected_rows > 0) {
+        if (getNbLieuxCategorie ($conn, $categorie) === 0) {
+            supprimerCategorie($conn, $categorie);
+        }
         return true;
     } else {
         return false;
