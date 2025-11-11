@@ -48,6 +48,17 @@ main {
     margin-top: 15em;
 }
 
+.anim_section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.anim_section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .description {
     flex-basis: 45%;
     flex-grow: 1;

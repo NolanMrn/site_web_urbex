@@ -42,7 +42,7 @@ $AllAnnees = getAllAnnees($conn);
     <?php include 'header.php'; ?>
     <main>
         <div class="container">
-            <section class="block">
+            <section class="block anim_section">
                 <nav class="filtre">
                     <section class="haut">
                         <p>Filtres</p>
@@ -136,7 +136,6 @@ $AllAnnees = getAllAnnees($conn);
                     </article>
                 </nav>
                 <section class="explos_photos">
-                    <h1 class="resultat_recherche"></h1>
                     <?php
                     while ($lieu = $lieux->fetch_assoc()) {
                         $categorie = htmlspecialchars($lieu["nom_categorie"]);
@@ -189,7 +188,7 @@ $AllAnnees = getAllAnnees($conn);
                     ?>
                 </section>
             </section>
-            <section class="pagination">
+            <section class="pagination anim_section">
                 <?php
                 $requeteChaine = '';
                 if ($categorieFiltre) {
@@ -222,5 +221,6 @@ $AllAnnees = getAllAnnees($conn);
         </div>
     </main>
     <?php include 'footer.php'; ?>
+    <script src="/site_web/public/js/animation.js"></script>
 </body>
 </html>

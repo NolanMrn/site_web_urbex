@@ -35,7 +35,7 @@ $nbLieux = $troisDerniersLieux->num_rows;
             </section>
             <div class="parent">
                 <div class="container">
-                    <section class="def_urbex">
+                    <section class="def_urbex anim_section">
                         <h1>L'<span class="orange">urbex</span> qu'est ce que c'est ?</h1>
                         <p>L'urbex, abréviation de l'anglais « urban exploration » (exploration urbaine), est une
                             pratique qui consiste à visiter et à documenter des lieux construits et abandonnés par
@@ -47,7 +47,7 @@ $nbLieux = $troisDerniersLieux->num_rows;
                         <p>Pour moi, l'exploration est un moyen de faire perdurer l'histoire de ces lieux, de ne pas les
                             oublier, et de les immortaliser grâce à la photographie.</p>
                     </section>
-                    <section class="def_site">
+                    <section class="def_site anim_section">
                         <h1>Un lieu d'<span class="orange">images</span>, pas d'adresses</h1>
                         <p>Ce site a pour but de vous partager mes clichés capturées au cours de mes explorations. C'est une 
                             vitrine photographique. Nous nous engageons fermement à respecter l'éthique Urbex : nous ne
@@ -55,7 +55,7 @@ $nbLieux = $troisDerniersLieux->num_rows;
                         <p>Notre unique mission est de documenter l'histoire de ces lieux, sans jamais compromettre leur intégrité
                             ou leur tranquillité.</p>
                     </section>
-                    <section class="explos_recentes">
+                    <section class="explos_recentes anim_section">
                         <article class="voir_plus">
                             <?php
                             if ($nbLieux == 0) {
@@ -122,7 +122,7 @@ $nbLieux = $troisDerniersLieux->num_rows;
                             ?>
                         </section>
                     </section>
-                    <section class="reseaux">
+                    <section class="reseaux anim_section">
                         <section>
                             <h1>Suivez-moi et mes compagnons d’aventure sur <span class="orange">Instagram</span></h1>
                             <section class="insta">
@@ -161,5 +161,6 @@ $nbLieux = $troisDerniersLieux->num_rows;
             </div>
         </main>
         <?php include 'footer.php'; ?>
+        <script src="/site_web/public/js/animation.js"></script>
     </body>
 </html>

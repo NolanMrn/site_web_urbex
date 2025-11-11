@@ -48,6 +48,17 @@ main {
     text-align: left;
 }
 
+.anim_section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.anim_section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .filtre {
     display: flex;
     flex-direction: column;
@@ -85,11 +96,6 @@ main {
     border: none;
     cursor: pointer;
     margin-left: auto;
-}
-
-.filtre .btn_croix.active-click {
-    transform: scale(0.9);
-    transition: transform 0.2s ease;
 }
 
 .filtre .recherche {
@@ -264,35 +270,6 @@ main {
 
 .article_vide {
     background-color: var(--couleur-fond-principal) !important;
-}
-
-.unLieu {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-}
-
-.unLieu.hidden {
-    opacity: 0;
-    transform: scale(0.95);
-}
-
-.resultat_recherche {
-    opacity: 1;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    will-change: transform, opacity;
-}
-
-.explos_photos h1 {
-    color: var(--couleur-texte-principal);
-    flex-basis: 100%;
-    margin: 0.5em 0 0 1.3em;
-}
-
-.resultat_recherche:empty {
-    display: none;
 }
 
 .pagination {

@@ -45,7 +45,11 @@ main {
 }
 
 .photo_acc article {
+    z-index: 2;
     text-align: center;
+    opacity: 0;
+    transition: opacity 1.7s ease, transform 1.7s ease;
+    transform: scale(0.5);
 }
 
 .photo_acc h1 {
@@ -129,6 +133,18 @@ main {
     font-weight: 100;
     margin-top: 0.6em;
 }
+
+.anim_section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.anim_section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 .voir_plus {
     display: flex;
@@ -302,3 +318,4 @@ main {
 .insta a:hover {
     color: var(--couleur-boutton);
 }
+

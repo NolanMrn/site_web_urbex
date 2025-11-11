@@ -86,5 +86,6 @@ $histoireLieux = getHistoireLieux($conn, $lieu["idL"], $lieu["nom_categorie"]);
         </div>
     </main>
     <?php include 'footer.php'; ?>
+    <script src="/site_web/public/js/animation.js"></script>
 </body>
 </html>

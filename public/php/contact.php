@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <?php include 'header.php'; ?>
     <main>
         <div class="container">
-            <section class="contact">
+            <section class="contact anim_section">
                 <article class="description">
                     <h1>Pour me <span class="orange">contacter</span></h1>
                     <p>Vous souhaitez en savoir plus sur les lieux présentés ou mes photos d'exploration urbaine ?
@@ -94,5 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     </main>
     <?php include 'footer.php'; ?>
+    <script src="/site_web/public/js/animation.js"></script>
 </body>
 </html>
