@@ -161,3 +161,14 @@ textarea {
 .form_lieu.visible {
     display: grid;
 }
+
+.anim_section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.anim_section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -53,7 +53,7 @@ if ($galeriesSelectionne != null) {
     <?php include '../header.php'; ?>
     <main>
         <div class="container" data-nbSections = "<?php echo $nbSections ?>">
-            <div class="block">
+            <div class="block anim_section">
                 <h1>Modifier un <span class="orange">lieu</span></h1>
                 <section class="deuxForm">
                     <form method="POST" action="">

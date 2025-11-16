@@ -23,7 +23,7 @@ $nbPhotos = 0;
     <?php include '../header.php'; ?>
     <main>
         <div class="container" data-nbSections = "<?php echo $nbSections ?>">
-            <section class="block">
+            <section class="block anim_section">
                 <h1>Ajouter un <span class="orange">lieu</span></h1>
                 <form class="form_lieu visible" method="POST" action="save_lieu.php" onsubmit="return validerFormulaire()">
                     <input type="hidden" name="nbSections" id="nbSections" value="<?php echo $nbSections; ?>">

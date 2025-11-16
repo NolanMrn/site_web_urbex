@@ -13,7 +13,7 @@
     <?php include '../header.php'; ?>
     <main>
         <div class="container">
-            <section>
+            <section class="anim_section">
                 <article class="titre">
                     <h1>Bienvenue sur la page <span class="orange">Admin</span></h1>
                 </article>

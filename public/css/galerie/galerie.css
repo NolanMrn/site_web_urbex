@@ -153,8 +153,12 @@ main {
     border-radius: 10px;
     transition: 0.3s;
     text-align: left;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, 0.3;
     font-family: 'Antonio', sans-serif;
+    will-change: transform;
+}
+.filtre article a:hover {
+    transform: scale(1.07);
 }
 
 .filtre article a.active {
@@ -266,6 +270,21 @@ main {
 
 .explos_photos>article a div:hover {
     transform: scale(1.05);
+}
+
+.fadeout {
+    animation: fadeout 0.3s forwards;
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
 }
 
 .article_vide {

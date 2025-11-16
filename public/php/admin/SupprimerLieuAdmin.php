@@ -21,7 +21,7 @@ $allLieux = getAllLieux($conn);
     <?php include '../header.php'; ?>
     <main>
         <div class="container">
-            <section class="block">
+            <section class="block anim_section">
                 <h1>Supprimer un <span class="orange">lieu</span></h1>
                 <form method="POST" action="save_lieu.php">
                     <input type="hidden" name="action" value="supprimer">
